@@ -2897,6 +2897,8 @@
     background: var(--pink);
     animation: pulse-pink 1.6s ease-in-out infinite;
   }
+  .chip-dot.ok   { background: var(--mint); }
+  .chip-dot.warn { background: var(--warn); }
   .filter-right { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
 
   /* Larm-table — kommun-admin's detailed alarm view */
@@ -3053,8 +3055,905 @@
   }
 
 
+  /* Kommun-admin top tab toggle (Flotta vs Avvikelser) */
+  .ka-tab { display: none; }
+  .ka-tab.ka-tab-active { display: block; animation: viewFade 0.18s ease; }
+  .vt-option { cursor: pointer; transition: all 0.15s ease; }
+
+  /* Kommun-admin sub-toggle inside Avvikelser tab */
+  .ka-sub-toggle {
+    display: inline-flex;
+    gap: 4px;
+    background: var(--line-2);
+    padding: 4px;
+    border-radius: 10px;
+    margin: 2px 0 14px;
+  }
+  .ka-sub-btn {
+    background: transparent;
+    border: 0;
+    color: var(--ink-3);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 7px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.15s ease;
+  }
+  .ka-sub-btn:hover { color: var(--ink); }
+  .ka-sub-btn.ka-sub-active {
+    background: var(--paper);
+    color: var(--ink);
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(28,41,81,0.06);
+  }
+  .ka-sub-count {
+    background: var(--paper);
+    color: var(--ink-3);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: 8px;
+  }
+  .ka-sub-btn.ka-sub-active .ka-sub-count {
+    background: var(--marine);
+    color: var(--mint);
+  }
+  .ka-sub-card { display: none; animation: viewFade 0.18s ease; }
+  .ka-sub-card.ka-sub-active { display: block; }
+
+  /* Weekly anomaly chart */
+  .ka-chart-card {
+    background: var(--paper);
+    border: 0.5px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-top: 16px;
+  }
+  .ka-chart-card .ka-card-head { margin-bottom: 14px; }
+  .ka-chart-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .ka-chart-svg .bar-crit { fill: var(--pink); }
+  .ka-chart-svg .bar-warn { fill: var(--warn); }
+  .ka-chart-svg .ka-chart-total {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    fill: var(--ink);
+  }
+  .ka-chart-svg .ka-chart-day {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    fill: var(--ink-2);
+  }
+  .ka-chart-svg .ka-chart-day.today { fill: var(--mint-dark); font-weight: 700; }
+  .ka-chart-svg .ka-chart-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    fill: var(--ink-3);
+  }
+  .ka-chart-bar.today rect { filter: drop-shadow(0 0 4px rgba(0,217,168,0.4)); }
+  .ka-chart-legend {
+    display: inline-flex;
+    gap: 14px;
+    font-size: 11.5px;
+    color: var(--ink-3);
+    font-weight: 500;
+  }
+  .ka-chart-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend-dot {
+    width: 8px; height: 8px;
+    border-radius: 2px;
+    display: inline-block;
+  }
+  .legend-dot.crit { background: var(--pink); }
+  .legend-dot.warn { background: var(--warn); }
+
+  /* Hantera enheter — list of hubs */
+  .enheter-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+  }
+  .enheter-table thead th {
+    text-align: left;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    padding: 12px 14px;
+    background: var(--line-2);
+    border-bottom: 0.5px solid var(--line);
+    white-space: nowrap;
+  }
+  .enheter-table tbody td {
+    padding: 13px 14px;
+    border-bottom: 0.5px solid var(--line-2);
+    vertical-align: middle;
+    color: var(--ink-2);
+  }
+  .enheter-table tbody tr:last-child td { border-bottom: 0; }
+  .enhet-tr.clickable {
+    cursor: pointer;
+    transition: background 0.12s ease;
+  }
+  .enhet-tr.clickable:hover { background: var(--mint-soft); }
+  .hub-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+  .hub-status-pill.online   { background: var(--mint-soft);  color: var(--mint-dark); }
+  .hub-status-pill.warning  { background: var(--warn-soft);  color: var(--warn-dark); }
+  .hub-status-pill.offline  { background: var(--pink-soft);  color: var(--pink-dark); }
+  .hub-status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .hub-status-pill.online .hub-status-dot   { background: var(--mint); }
+  .hub-status-pill.warning .hub-status-dot  { background: var(--warn); }
+  .hub-status-pill.offline .hub-status-dot  {
+    background: var(--pink);
+    animation: pulse-pink 1.6s ease-in-out infinite;
+  }
+  .hub-sat-num {
+    font-family: 'SF Mono', Monaco, 'Cascadia Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .hub-tel {
+    font-family: 'SF Mono', Monaco, monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+    margin-top: 2px;
+  }
+  .hub-brukare-name { font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .hub-brukare-addr { font-size: 11.5px; color: var(--ink-3); }
+  .op-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 5px;
+  }
+  .op-badge.op-tele2 { background: #E8F0FE; color: #1A4FBA; }
+  .op-badge.op-telia { background: #FCE7E9; color: #B73544; }
+  .op-badge.op-other { background: var(--line-2); color: var(--ink-3); }
+  .hub-signal-cell { display: inline-flex; align-items: center; gap: 8px; }
+  .hub-signal-bars {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 16px;
+  }
+  .hub-signal-bars span {
+    width: 3px;
+    background: var(--line);
+    border-radius: 1px;
+    display: inline-block;
+  }
+  .hub-signal-bars span:nth-child(1) { height: 25%; }
+  .hub-signal-bars span:nth-child(2) { height: 50%; }
+  .hub-signal-bars span:nth-child(3) { height: 75%; }
+  .hub-signal-bars span:nth-child(4) { height: 100%; }
+  .hub-signal-bars.good span.on { background: var(--mint-dark); }
+  .hub-signal-bars.okay span.on { background: var(--mint); }
+  .hub-signal-bars.weak span.on { background: var(--warn); }
+  .hub-signal-bars.zero span { background: var(--pink-soft); }
+  .hub-signal-text {
+    font-family: 'SF Mono', Monaco, monospace;
+    font-size: 11.5px;
+    color: var(--ink-2);
+  }
+  .hub-acc-count { font-weight: 600; color: var(--ink); font-size: 13px; }
+  .hub-acc-label { font-size: 11px; color: var(--ink-3); }
+  .hub-heartbeat {
+    font-size: 11.5px;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Kommun-select dropdown (Sensapp only) */
+  .kommun-select {
+    background: var(--paper);
+    border: 0.5px solid var(--line);
+    color: var(--ink-2);
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 7px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: border-color 0.12s ease;
+  }
+  .kommun-select:hover { border-color: var(--ink-4); }
+  .kommun-select i:first-child { color: var(--marine); }
+  .kommun-select i:last-child { color: var(--ink-4); font-size: 14px; }
+
+  /* Scope visibility — switches header info + kommun-select based on body class */
+  .show-on-sensapp { display: none; }
+  body.scope-sensapp .show-on-sensapp { display: inline-flex; }
+  body.scope-sensapp .hide-on-sensapp { display: none; }
+
+  /* Warning list rows */
+  .warning-list { display: flex; flex-direction: column; gap: 8px; }
+  .warning-row {
+    background: var(--paper);
+    border: 0.5px solid var(--line);
+    border-left: 3px solid var(--warn);
+    border-radius: 10px;
+    padding: 14px 18px;
+    display: grid;
+    grid-template-columns: 1.3fr 1.4fr auto;
+    gap: 20px;
+    align-items: center;
+    transition: all 0.15s ease;
+  }
+  .warning-row:hover {
+    border-color: var(--warn);
+    border-left-color: var(--warn-dark);
+    box-shadow: 0 6px 18px rgba(255,176,0,0.10);
+    transform: translateY(-1px);
+  }
+  .warning-sat {
+    font-family: 'SF Mono', Monaco, monospace;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: 3px;
+  }
+  .warning-name { font-size: 12.5px; color: var(--ink-2); font-weight: 500; }
+  .warning-addr { color: var(--ink-3); font-weight: 400; }
+  .warning-problem-title { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .warning-problem-detail { font-size: 11.5px; color: var(--ink-3); }
+  .warning-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; min-width: 200px; }
+  .warning-acc {
+    font-size: 11px;
+    color: var(--ink-3);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .warning-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--warn-dark);
+    background: var(--warn-soft);
+    padding: 5px 11px;
+    border-radius: 14px;
+  }
+  .warning-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--warn);
+  }
+  .warning-chev { color: var(--ink-4); font-size: 16px; }
+
+  /* Hub volume slider (added inside NOC hub-detail action panel) */
+  .hub-volume-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 6px 4px 2px;
+  }
+  .hub-volume-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 78px;
+    gap: 14px;
+    align-items: center;
+  }
+  .hub-volume-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #C9D6F2;
+  }
+  .hub-volume-label i { color: var(--mint); font-size: 15px; }
+  .hub-volume-range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 4px;
+    background: linear-gradient(to right, var(--mint) 0%, var(--mint) 50%, rgba(255,255,255,0.16) 50%, rgba(255,255,255,0.16) 100%);
+    outline: none;
+    cursor: pointer;
+  }
+  .hub-volume-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--mint);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+  .hub-volume-range::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--mint);
+    cursor: pointer;
+  }
+  .hub-volume-value {
+    font-family: 'SF Mono', Monaco, monospace;
+    font-size: 12px;
+    color: var(--mint);
+    font-weight: 600;
+    text-align: right;
+  }
+  .hub-volume-help {
+    font-size: 11.5px;
+    color: rgba(201,214,242,0.6);
+    line-height: 1.5;
+    margin-top: 6px;
+    padding-top: 8px;
+    border-top: 0.5px solid rgba(255,255,255,0.08);
+  }
+
   @media (max-width: 760px) {
-    .app-topbar { flex-wrap: wrap; gap: 10px; padding: 10px 16px; }
+    .warning-row { grid-template-columns: 1fr; }
+    .warning-right { align-items: flex-start; min-width: 0; }
+    .enheter-table thead { display: none; }
+    .enheter-table tbody td { display: block; padding: 4px 12px; border: 0; }
+    .enheter-table tbody tr { border-bottom: 0.5px solid var(--line); padding: 10px 0; }
+    .ka-sub-toggle { flex-wrap: wrap; }
+    .hub-volume-row { grid-template-columns: 1fr; gap: 6px; }
+    .hub-volume-value { text-align: left; }
+  }
+
+
+  /* Brukarsida — daily user volume card (light theme) */
+  .bs-vol-card {
+    background: var(--paper);
+    border: 0.5px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .bs-vol-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 0.5px solid var(--line-2);
+  }
+  .bs-vol-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .bs-vol-title i { color: var(--marine); font-size: 17px; }
+  .bs-vol-help { font-size: 11.5px; color: var(--ink-3); }
+  .bs-vol-grid { display: flex; flex-direction: column; gap: 12px; }
+  .bs-vol-row {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 22px;
+    align-items: center;
+  }
+  .bs-vol-label { display: flex; flex-direction: column; gap: 2px; }
+  .bs-vol-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .bs-vol-name i { color: var(--marine); font-size: 14px; }
+  .bs-vol-desc { font-size: 11.5px; color: var(--ink-3); }
+  .bs-vol-control {
+    display: grid;
+    grid-template-columns: 1fr 60px;
+    gap: 14px;
+    align-items: center;
+  }
+  .bs-vol-range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 4px;
+    background: linear-gradient(to right, var(--mint) 0%, var(--mint) 50%, var(--line) 50%, var(--line) 100%);
+    outline: none;
+    cursor: pointer;
+  }
+  .bs-vol-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--marine);
+    border: 3px solid var(--mint);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(28,41,81,0.15);
+  }
+  .bs-vol-range::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--marine);
+    border: 3px solid var(--mint);
+    cursor: pointer;
+  }
+  .bs-vol-value {
+    font-family: 'SF Mono', Monaco, monospace;
+    font-size: 13px;
+    color: var(--marine);
+    font-weight: 700;
+    text-align: right;
+  }
+  @media (max-width: 760px) {
+    .bs-vol-row { grid-template-columns: 1fr; gap: 8px; }
+    .bs-vol-control { grid-template-columns: 1fr 60px; }
+  }
+
+  /* ════ HUB-TECH detailed Climax view (linked from NOC) ════ */
+  .ht-page {
+    background: var(--bg);
+    padding: 26px 28px 32px;
+    border-radius: 0 0 18px 18px;
+  }
+  .ht-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    padding-bottom: 22px;
+    border-bottom: 0.5px solid var(--line);
+    margin-bottom: 18px;
+  }
+  .ht-header-left { display: flex; align-items: flex-start; gap: 18px; }
+  .ht-thumb {
+    width: 64px; height: 64px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--marine), #2A3D6E);
+    color: var(--mint);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    box-shadow: 0 4px 12px rgba(28,41,81,0.12);
+    flex-shrink: 0;
+  }
+  .ht-id { display: flex; flex-direction: column; gap: 4px; }
+  .ht-back-link {
+    font-size: 11.5px;
+    color: var(--ink-3);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  .ht-back-link:hover { color: var(--marine); }
+  .ht-sat-big {
+    font-family: 'SF Mono', Monaco, 'Cascadia Mono', monospace;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin: 0;
+    line-height: 1.1;
+  }
+  .ht-meta { font-size: 12.5px; color: var(--ink-2); margin: 2px 0 0; }
+  .ht-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    border-radius: 16px;
+  }
+  .ht-status-pill.online  { background: var(--mint-soft); color: var(--mint-dark); }
+  .ht-status-pill.warning { background: var(--warn-soft); color: var(--warn-dark); }
+  .ht-status-pill.offline { background: var(--pink-soft); color: var(--pink-dark); }
+  .ht-status-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .ht-status-pill.online  .ht-status-dot { background: var(--mint); }
+  .ht-status-pill.warning .ht-status-dot { background: var(--warn); }
+  .ht-status-pill.offline .ht-status-dot {
+    background: var(--pink);
+    animation: pulse-pink 1.6s ease-in-out infinite;
+  }
+
+  /* Recommendations strip */
+  .ht-rec {
+    background: var(--paper);
+    border: 0.5px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+  }
+  .ht-rec-head {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--ink-3);
+    margin-bottom: 10px;
+  }
+  .ht-rec-count {
+    background: var(--marine);
+    color: var(--mint);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 1px 9px;
+    border-radius: 8px;
+    letter-spacing: 0;
+  }
+  .ht-rec-item {
+    display: grid;
+    grid-template-columns: 36px 1fr auto;
+    gap: 14px;
+    align-items: center;
+    padding: 10px 0;
+    border-top: 0.5px solid var(--line-2);
+  }
+  .ht-rec-item:first-of-type { border-top: 0; }
+  .ht-rec-icon {
+    width: 36px; height: 36px;
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .ht-rec-icon.warn { background: var(--warn-soft); color: var(--warn-dark); }
+  .ht-rec-icon.info { background: #E8F0FE; color: #1A4FBA; }
+  .ht-rec-title { font-size: 13px; font-weight: 600; color: var(--ink); margin: 0 0 3px; }
+  .ht-rec-info { font-size: 11.5px; color: var(--ink-3); margin: 0; }
+  .ht-rec-btn {
+    background: var(--paper);
+    border: 0.5px solid var(--line);
+    color: var(--ink-2);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: inherit;
+  }
+  .ht-rec-btn:hover {
+    border-color: var(--marine);
+    color: var(--marine);
+  }
+  .ht-rec-btn.primary {
+    background: var(--marine);
+    border-color: var(--marine);
+    color: var(--mint);
+  }
+  .ht-rec-btn.primary:hover {
+    background: #16223F;
+    color: var(--mint);
+  }
+
+  /* Action bar */
+  .ht-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .ht-action {
+    background: var(--paper);
+    border: 0.5px solid var(--line);
+    color: var(--ink-2);
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: inherit;
+  }
+  .ht-action:hover {
+    border-color: var(--marine);
+    color: var(--marine);
+    background: var(--mint-soft);
+  }
+  .ht-action i { font-size: 14px; }
+
+  /* Tab nav */
+  .ht-tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 0.5px solid var(--line);
+    margin-bottom: 18px;
+  }
+  .ht-tab {
+    background: transparent;
+    border: 0;
+    color: var(--ink-3);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 16px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all 0.12s ease;
+  }
+  .ht-tab:hover { color: var(--ink); }
+  .ht-tab.active {
+    color: var(--marine);
+    font-weight: 600;
+    border-bottom-color: var(--marine);
+  }
+
+  /* Two-column card grid */
+  .ht-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .ht-card {
+    background: var(--paper);
+    border: 0.5px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .ht-card-head {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 0.5px solid var(--line-2);
+    width: 100%;
+  }
+  .ht-card-head.between {
+    display: flex;
+    justify-content: space-between;
+  }
+  .ht-card-head-left {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .ht-card-head i { color: var(--marine); font-size: 17px; }
+  .ht-card-head h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .ht-link {
+    font-size: 12px;
+    color: var(--marine);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .ht-link:hover { color: var(--mint-dark); }
+
+  /* dl key/value rows */
+  .ht-dl {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 8px 18px;
+    font-size: 12.5px;
+    margin: 0;
+  }
+  .ht-dl dt {
+    color: var(--ink-3);
+    font-weight: 500;
+  }
+  .ht-dl dd {
+    color: var(--ink);
+    margin: 0;
+    text-align: right;
+    font-weight: 500;
+  }
+  .ht-dl dd.mono {
+    font-family: 'SF Mono', Monaco, monospace;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .ht-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 5px;
+  }
+  .ht-tag.active  { background: var(--mint-soft); color: var(--mint-dark); }
+  .ht-tag.ok      { background: var(--mint-soft); color: var(--mint-dark); }
+  .ht-tag.warn    { background: var(--warn-soft); color: var(--warn-dark); }
+  .ht-tag.crit    { background: var(--pink-soft); color: var(--pink-dark); }
+  .ht-tag.info    { background: #E8F0FE; color: #1A4FBA; }
+  .ht-tag.pending { background: var(--line-2); color: var(--ink-3); font-weight: 500; }
+
+  .ht-card-foot {
+    margin: 14px 0 0;
+    padding-top: 12px;
+    border-top: 0.5px solid var(--line-2);
+    font-size: 11.5px;
+    color: var(--ink-3);
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    line-height: 1.5;
+  }
+  .ht-card-foot i { color: var(--marine); font-size: 13px; margin-top: 1px; flex-shrink: 0; }
+
+  /* Home environment */
+  .ht-env {
+    background: var(--paper);
+    border: 0.5px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-bottom: 18px;
+  }
+  .ht-env-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .ht-env-sensor {
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .ht-env-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+  .ht-env-label i { color: var(--marine); font-size: 13px; }
+  .ht-env-loc { font-size: 11px; color: var(--ink-3); margin-bottom: 8px; }
+  .ht-env-val {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .ht-env-val .unit { font-size: 14px; font-weight: 500; color: var(--ink-3); }
+  .ht-env-val.false {
+    font-family: 'SF Mono', Monaco, monospace;
+    color: var(--mint-dark);
+    font-size: 20px;
+  }
+  .ht-env-ago { font-size: 11px; color: var(--ink-3); margin-top: 5px; }
+
+  /* Activity table */
+  .ht-activity {
+    background: var(--paper);
+    border: 0.5px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 0 4px;
+  }
+  .ht-activity .ht-card-head { padding-left: 18px; padding-right: 18px; margin-bottom: 0; padding-bottom: 14px; }
+  .ht-activity-count {
+    font-size: 11px;
+    color: var(--ink-3);
+    font-weight: 500;
+    padding-left: 8px;
+    border-left: 0.5px solid var(--line);
+  }
+  .ht-activity-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+  }
+  .ht-activity-table tbody td {
+    padding: 11px 14px;
+    border-top: 0.5px solid var(--line-2);
+    vertical-align: middle;
+    color: var(--ink-2);
+  }
+  .ht-act-time {
+    font-family: 'SF Mono', Monaco, monospace;
+    font-size: 11.5px;
+    color: var(--ink-3);
+    white-space: nowrap;
+    padding-left: 18px !important;
+  }
+  .ht-act-avatar {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--mint-soft);
+    color: var(--mint-dark);
+    font-weight: 700;
+    font-size: 11px;
+    display: flex; align-items: center; justify-content: center;
+    text-transform: uppercase;
+  }
+  .ht-act-avatar.sys {
+    background: var(--line-2);
+    color: var(--ink-3);
+    font-family: 'SF Mono', Monaco, monospace;
+    text-transform: lowercase;
+    font-size: 10px;
+    font-weight: 600;
+  }
+  .ht-act-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 3px 9px;
+    border-radius: 5px;
+    white-space: nowrap;
+  }
+  .ht-act-badge.crit { background: var(--pink-soft); color: var(--pink-dark); }
+  .ht-act-badge.warn { background: var(--warn-soft); color: var(--warn-dark); }
+  .ht-act-badge.info { background: #E8F0FE; color: #1A4FBA; }
+  .ht-act-badge.ok   { background: var(--mint-soft); color: var(--mint-dark); }
+
+  @media (max-width: 760px) {
+    .ht-grid { grid-template-columns: 1fr; }
+    .ht-env-grid { grid-template-columns: 1fr; }
+    .ht-header { flex-direction: column; gap: 14px; align-items: flex-start; }
+    .ht-sat-big { font-size: 20px; }
+    .ht-rec-item { grid-template-columns: 36px 1fr; }
+    .ht-rec-btn { grid-column: 1 / -1; justify-self: end; }
+    .ht-tabs { overflow-x: auto; white-space: nowrap; }
+    .ht-dl { grid-template-columns: 1fr; gap: 2px 0; }
+    .ht-dl dd { text-align: left; padding-bottom: 8px; border-bottom: 0.5px solid var(--line-2); }
+    .ht-activity-table { font-size: 11.5px; }
+    .ht-activity-table tbody td { padding: 8px 8px; }
+    .ht-page { padding: 16px 14px 20px; }
+  }
+
+
+
     .role-switch { width: 100%; justify-content: center; flex: 1; }
     .role-pill { flex: 1; justify-content: center; font-size: 12px; padding: 6px 8px; }
     .role-tag { display: none; }
@@ -3691,10 +4590,28 @@
 
             <div class="noc-panel" style="margin-top:14px">
               <div class="noc-panel-head">
+                <h3>Volym &amp; ljud</h3>
+              </div>
+              <div class="hub-volume-grid">
+                <div class="hub-volume-row">
+                  <div class="hub-volume-label"><i class="ti ti-volume" aria-hidden="true"></i>Högtalarvolym</div>
+                  <input type="range" min="0" max="10" value="7" class="hub-volume-range" aria-label="Högtalarvolym">
+                  <span class="hub-volume-value">7 / 10</span>
+                </div>
+                <div class="hub-volume-row">
+                  <div class="hub-volume-label"><i class="ti ti-message-circle" aria-hidden="true"></i>Promptvolym</div>
+                  <input type="range" min="0" max="10" value="5" class="hub-volume-range" aria-label="Promptvolym">
+                  <span class="hub-volume-value">5 / 10</span>
+                </div>
+                <p class="hub-volume-help">Justeringar synkas till hubben omedelbart. Alla roller (Sensapp, kommun-admin, daglig användare) kan ändra ljudnivåerna eftersom de ofta behöver justeras vid besök hos brukaren.</p>
+              </div>
+
+              <div class="noc-panel-head" style="margin-top:18px">
                 <h3>Åtgärder</h3>
               </div>
               <div class="noc-actions">
-                <button class="noc-action primary"><i class="ti ti-refresh" aria-hidden="true"></i>Tvinga check-in</button>
+                <button class="noc-action primary" data-goto="sensapp/hub-tech/maria"><i class="ti ti-device-desktop-analytics" aria-hidden="true"></i>Detaljerad information</button>
+                <button class="noc-action"><i class="ti ti-refresh" aria-hidden="true"></i>Tvinga check-in</button>
                 <button class="noc-action"><i class="ti ti-broadcast" aria-hidden="true"></i>Byt operatör</button>
                 <button class="noc-action"><i class="ti ti-plug" aria-hidden="true"></i>Koppla enhet</button>
                 <button class="noc-action"><i class="ti ti-unlink" aria-hidden="true"></i>Ta bort tillkopplad enhet</button>
@@ -3713,8 +4630,222 @@
 
 </div>
 
+<div class="view" id="view-hub-tech">
+<section class="light">
+  <div class="wrap">
+    <div class="eyebrow">Sensapp · Detaljerad enhetsvy</div>
+    <h2 class="section-title">Allt vi vet om en enskild Climax</h2>
+    <p class="section-lead">
+      Den här djupare tekniska vyn samlar allt en Sensapp-tekniker behöver för
+      att felsöka en enskild hubb — identitet, anslutning, hemmiljö, snabbinställningar
+      och aktivitet — på ett ställe. När Freddy klickar "Detaljerad information" från
+      NOC-hub-detaljen är det hit han kommer.
+    </p>
+
+    <div class="mockup-stage">
+      <div class="mockup-meta">
+        <span>SENSAPP · CLIMAX-DETALJ · MARIA BERGSTRÖM</span>
+        <div class="dot-row"><span></span><span></span><span></span></div>
+      </div>
+
+      <div class="ht-page">
+        <header class="ht-header">
+          <div class="ht-header-left">
+            <div class="ht-thumb"><i class="ti ti-broadcast" aria-hidden="true"></i></div>
+            <div class="ht-id">
+              <div class="ht-back-link" data-goto="sensapp/noc/maria-hub" role="button" tabindex="0"><i class="ti ti-arrow-left" aria-hidden="true"></i>Tillbaka till hubb</div>
+              <h1 class="ht-sat-big">SAT-2321-932913</h1>
+              <p class="ht-meta">Climax Smart Care &middot; Björkgatan 7, 643 30 Vingåker &middot; Tele2 &middot; Installerad 18 mar 2024</p>
+            </div>
+          </div>
+          <div class="ht-header-right">
+            <span class="ht-status-pill offline"><span class="ht-status-dot"></span>Offline 47 h</span>
+          </div>
+        </header>
+
+        <section class="ht-rec">
+          <div class="ht-rec-head">
+            <span class="ht-rec-label">Rekommenderas för denna enhet</span>
+            <span class="ht-rec-count">2</span>
+          </div>
+          <div class="ht-rec-item">
+            <div class="ht-rec-icon warn"><i class="ti ti-alert-triangle" aria-hidden="true"></i></div>
+            <div class="ht-rec-body">
+              <p class="ht-rec-title">Operatörsbyte rekommenderas — Tele2-masten har varit ostabil sedan 14:02</p>
+              <p class="ht-rec-info">Sekundär (Telia) tappad sedan 14:05. PSTN-fallback ej konfigurerad. Förslag: byt primär till Telia.</p>
+            </div>
+            <button class="ht-rec-btn primary">Byt operatör</button>
+          </div>
+          <div class="ht-rec-item">
+            <div class="ht-rec-icon info"><i class="ti ti-cpu" aria-hidden="true"></i></div>
+            <div class="ht-rec-body">
+              <p class="ht-rec-title">Firmware sen_0.0.2B finns att rulla ut — denna hubb är på 0.0.2</p>
+              <p class="ht-rec-info">9 hubbar återstår i denna våg. Rekommenderas att vänta tills hubben kommit online igen.</p>
+            </div>
+            <button class="ht-rec-btn">Pausa till online</button>
+          </div>
+        </section>
+
+        <div class="ht-actions">
+          <button class="ht-action"><i class="ti ti-refresh" aria-hidden="true"></i>Starta om</button>
+          <button class="ht-action"><i class="ti ti-settings" aria-hidden="true"></i>Redigera inställningar</button>
+          <button class="ht-action"><i class="ti ti-file-text" aria-hidden="true"></i>Visa loggar</button>
+          <button class="ht-action"><i class="ti ti-external-link" aria-hidden="true"></i>Öppna i Skyresponse</button>
+        </div>
+
+        <nav class="ht-tabs">
+          <button class="ht-tab active" type="button">Översikt</button>
+          <button class="ht-tab" type="button">Händelser</button>
+          <button class="ht-tab" type="button">Inställningar</button>
+          <button class="ht-tab" type="button">Command queue</button>
+          <button class="ht-tab" type="button">Firmware</button>
+        </nav>
+
+        <div class="ht-grid">
+          <div class="ht-card">
+            <div class="ht-card-head"><i class="ti ti-user" aria-hidden="true"></i><h3>Identitet</h3></div>
+            <dl class="ht-dl">
+              <dt>Brukare</dt><dd>Maria Bergström</dd>
+              <dt>Serienummer</dt><dd class="mono">SAT-2321-932913</dd>
+              <dt>Produkttyp</dt><dd>Climax Smart Care</dd>
+              <dt>Firmware</dt><dd class="mono">sen_0.0.2 <span class="ht-tag pending">→ 0.0.2B</span></dd>
+              <dt>Livscykel</dt><dd><span class="ht-tag active">aktiv</span></dd>
+              <dt>Installerad</dt><dd>18 mar 2024</dd>
+              <dt>Adress</dt><dd>Björkgatan 7, 643 30 Vingåker</dd>
+              <dt>Placering</dt><dd>Hall</dd>
+              <dt>Hemtjänst</dt><dd>Norra hemtjänst</dd>
+              <dt>MAS-ansvarig</dt><dd>Britt Lindholm</dd>
+            </dl>
+          </div>
+
+          <div class="ht-card">
+            <div class="ht-card-head"><i class="ti ti-antenna" aria-hidden="true"></i><h3>Anslutning</h3></div>
+            <dl class="ht-dl">
+              <dt>Signalkvalitet</dt><dd><span class="ht-tag crit">Ingen signal</span></dd>
+              <dt>Senaste signal</dt><dd class="mono">−54 dBm (17 maj 13:48)</dd>
+              <dt>Batteri</dt><dd>Backup: 18 % (47h på batteri)</dd>
+              <dt>Nätström</dt><dd><span class="ht-tag warn">OK · ingen LTE</span></dd>
+              <dt>Telefonnummer</dt><dd class="mono">+46 70 191 02 51</dd>
+              <dt>Operatör</dt><dd>Tele2 (primär) · Telia (sekundär)</dd>
+              <dt>SIM ICCID</dt><dd class="mono">8946001012345670001</dd>
+              <dt>Aktiv väg</dt><dd><span class="ht-tag crit">Ingen — alla väg-failover</span></dd>
+              <dt>Senast hörd</dt><dd>47h sedan (söndag 14:02)</dd>
+              <dt>Senaste larm</dt><dd>9 dagar sedan</dd>
+            </dl>
+          </div>
+
+          <div class="ht-card">
+            <div class="ht-card-head"><i class="ti ti-adjustments" aria-hidden="true"></i><h3>Snabbinställningar</h3></div>
+            <dl class="ht-dl">
+              <dt>Högtalarvolym</dt><dd class="mono">7 / 10</dd>
+              <dt>Promptvolym</dt><dd class="mono">5 / 10</dd>
+              <dt>LCD-timeout</dt><dd class="mono">30 sek</dd>
+              <dt>Heartbeat-intervall</dt><dd class="mono">300 sek</dd>
+              <dt>Auto check-in</dt><dd>Var 6 timme</dd>
+              <dt>Larmfördröjning</dt><dd class="mono">0 sek</dd>
+              <dt>Ringtid Skyresponse</dt><dd class="mono">60 sek</dd>
+              <dt>Tyst läge</dt><dd>22:00 — 06:00</dd>
+            </dl>
+            <p class="ht-card-foot"><i class="ti ti-info-circle" aria-hidden="true"></i>Volyminställningar kan justeras av Sensapp, kommun-admin och daglig användare från hubbens detaljvy.</p>
+          </div>
+
+          <div class="ht-card">
+            <div class="ht-card-head"><i class="ti ti-plug-connected" aria-hidden="true"></i><h3>Skyresponse</h3></div>
+            <dl class="ht-dl">
+              <dt>SR-produkt</dt><dd>Climax Smart Care</dd>
+              <dt>SR-ID</dt><dd class="mono">SR-VKR-009-3284</dd>
+              <dt>Status</dt><dd><span class="ht-tag crit">Frånkopplad — kan inte nå hubben</span></dd>
+              <dt>Senast vidarebefordrade larm</dt><dd>9 dagar sedan (12:32 fre 09/5)</dd>
+              <dt>Misslyckade routningar (7d)</dt><dd class="mono">2</dd>
+              <dt>Avtalsnivå</dt><dd>Sjukvård · Larmcentral 24/7</dd>
+              <dt>Tilldelad jour-grupp</dt><dd>Vingåkers hemtjänst</dd>
+            </dl>
+          </div>
+        </div>
+
+        <div class="ht-env">
+          <div class="ht-card-head"><i class="ti ti-home" aria-hidden="true"></i><h3>Hemmiljö (sista uppmätta värden)</h3></div>
+          <div class="ht-env-grid">
+            <div class="ht-env-sensor">
+              <div class="ht-env-label"><i class="ti ti-temperature" aria-hidden="true"></i>Temperatur</div>
+              <div class="ht-env-loc">Hall</div>
+              <div class="ht-env-val">19,2&nbsp;<span class="unit">°C</span></div>
+              <div class="ht-env-ago">47 h sedan</div>
+            </div>
+            <div class="ht-env-sensor">
+              <div class="ht-env-label"><i class="ti ti-droplet" aria-hidden="true"></i>Luftfuktighet</div>
+              <div class="ht-env-loc">Hall</div>
+              <div class="ht-env-val">52&nbsp;<span class="unit">%</span></div>
+              <div class="ht-env-ago">47 h sedan</div>
+            </div>
+            <div class="ht-env-sensor">
+              <div class="ht-env-label"><i class="ti ti-flame" aria-hidden="true"></i>Rök</div>
+              <div class="ht-env-loc">Kök</div>
+              <div class="ht-env-val false">false</div>
+              <div class="ht-env-ago">49 h sedan</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ht-activity">
+          <div class="ht-card-head between">
+            <div class="ht-card-head-left"><i class="ti ti-history" aria-hidden="true"></i><h3>Aktivitet</h3><span class="ht-activity-count">6 händelser</span></div>
+            <a class="ht-link" href="#">Visa full logg →</a>
+          </div>
+          <table class="ht-activity-table">
+            <tbody>
+              <tr>
+                <td class="ht-act-time">18 maj &middot; 08:54</td>
+                <td><div class="ht-act-avatar sys">sys</div></td>
+                <td>System</td>
+                <td><span class="ht-act-badge crit">Hubb offline</span></td>
+                <td>Primär (Tele2) tappad 14:02, sekundär (Telia) tappad 14:05</td>
+              </tr>
+              <tr>
+                <td class="ht-act-time">17 maj &middot; 14:32</td>
+                <td><div class="ht-act-avatar sys">sys</div></td>
+                <td>System</td>
+                <td><span class="ht-act-badge warn">Auto check-in missad</span></td>
+                <td>Heartbeat utebliven sedan 14:05</td>
+              </tr>
+              <tr>
+                <td class="ht-act-time">17 maj &middot; 13:48</td>
+                <td><div class="ht-act-avatar sys">sys</div></td>
+                <td>System</td>
+                <td><span class="ht-act-badge warn">Signal försämrad</span></td>
+                <td>Tele2-mast trend försämrad &minus;42 → &minus;54 dBm</td>
+              </tr>
+              <tr>
+                <td class="ht-act-time">12 maj &middot; 09:14</td>
+                <td><div class="ht-act-avatar">AM</div></td>
+                <td>Anna Magnell</td>
+                <td><span class="ht-act-badge info">Volym justerad</span></td>
+                <td>Högtalarvolym 5 → 7 från brukarsidan</td>
+              </tr>
+              <tr>
+                <td class="ht-act-time">06 maj &middot; 11:02</td>
+                <td><div class="ht-act-avatar">FK</div></td>
+                <td>Freddy Karlsson</td>
+                <td><span class="ht-act-badge info">Firmware uppdaterad</span></td>
+                <td>sen_0.0.1 → sen_0.0.2 levererad och installerad</td>
+              </tr>
+              <tr>
+                <td class="ht-act-time">18 mar &middot; 10:15</td>
+                <td><div class="ht-act-avatar">MA</div></td>
+                <td>Marcus Andersson</td>
+                <td><span class="ht-act-badge ok">Enhet installerad</span></td>
+                <td>Hubb tilldelad Maria Bergström, parkopplad med 6 tillbehör</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
 <div class="view" id="view-kommun">
-<!-- ═══ KOMMUN-ADMIN ÖVERSIKT ─────────────────────────── -->
 <section class="light">
   <div class="wrap">
     <div class="eyebrow">Vy 7 · Kommun-admin översikt</div>
@@ -3726,6 +4857,7 @@
       Vingåker som helhet mår bra.
     </p>
 
+    <div class="ka-tab ka-tab-active" data-tab="flotta">
     <div class="mockup-stage">
       <div class="mockup-meta">
         <span>KOMMUN-ADMIN · VINGÅKER</span>
@@ -3782,17 +4914,17 @@
             </div>
 
             <div class="ka-kpis">
-              <div class="ka-kpi-light t1">
+              <div class="ka-kpi-light t1 clickable" data-goto="nehat/hantera-enheter" role="button" tabindex="0" aria-label="Visa alla enheter">
                 <div class="ka-kpi-label"><i class="ti ti-broadcast" aria-hidden="true"></i>Totalt</div>
                 <div class="ka-kpi-value">312</div>
                 <div class="ka-kpi-delta">+4 enheter denna vecka</div>
               </div>
-              <div class="ka-kpi-light t2">
+              <div class="ka-kpi-light t2 clickable" data-goto="nehat/hantera-enheter/online" role="button" tabindex="0" aria-label="Visa enheter online">
                 <div class="ka-kpi-label"><i class="ti ti-circle-check" aria-hidden="true"></i>Online</div>
                 <div class="ka-kpi-value">284</div>
                 <div class="ka-kpi-delta">91,0 % · ↓ -2 sedan igår</div>
               </div>
-              <div class="ka-kpi-light t3">
+              <div class="ka-kpi-light t3 clickable" data-goto="nehat/varning" role="button" tabindex="0" aria-label="Visa enheter med varning">
                 <div class="ka-kpi-label"><i class="ti ti-alert-triangle" aria-hidden="true"></i>Varning</div>
                 <div class="ka-kpi-value">14</div>
                 <div class="ka-kpi-delta">Behöver uppmärksamhet</div>
@@ -3960,9 +5092,9 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
+    </div>
 
+    <div class="ka-tab" data-tab="avvikelser">
     <div class="mockup-stage" style="margin-top:14px">
       <div class="mockup-meta">
         <span>KOMMUN-ADMIN · VINGÅKER · LÄGE 2: AVVIKELSER & HÄNDELSER</span>
@@ -4019,17 +5151,17 @@
             </div>
 
             <div class="ka-kpis">
-              <div class="ka-kpi-light t1">
+              <div class="ka-kpi-light t1 clickable" data-goto="nehat/hantera-enheter" role="button" tabindex="0" aria-label="Visa alla enheter">
                 <div class="ka-kpi-label"><i class="ti ti-broadcast" aria-hidden="true"></i>Totalt</div>
                 <div class="ka-kpi-value">312</div>
                 <div class="ka-kpi-delta">+4 enheter denna vecka</div>
               </div>
-              <div class="ka-kpi-light t2">
+              <div class="ka-kpi-light t2 clickable" data-goto="nehat/hantera-enheter/online" role="button" tabindex="0" aria-label="Visa enheter online">
                 <div class="ka-kpi-label"><i class="ti ti-circle-check" aria-hidden="true"></i>Online</div>
                 <div class="ka-kpi-value">284</div>
                 <div class="ka-kpi-delta">91,0 % · ↓ -2 sedan igår</div>
               </div>
-              <div class="ka-kpi-light t3">
+              <div class="ka-kpi-light t3 clickable" data-goto="nehat/varning" role="button" tabindex="0" aria-label="Visa enheter med varning">
                 <div class="ka-kpi-label"><i class="ti ti-alert-triangle" aria-hidden="true"></i>Varning</div>
                 <div class="ka-kpi-value">14</div>
                 <div class="ka-kpi-delta">Behöver uppmärksamhet</div>
@@ -4041,7 +5173,21 @@
               </div>
             </div>
 
-            <div class="ka-card">
+            <div class="ka-sub-toggle">
+              <button class="ka-sub-btn ka-sub-active" data-sub="avvikelser" type="button">
+                <i class="ti ti-alert-triangle" aria-hidden="true"></i>
+                Avvikelser &amp; observationer
+                <span class="ka-sub-count">4</span>
+              </button>
+              <button class="ka-sub-btn" data-sub="handelser" type="button">
+                <i class="ti ti-history" aria-hidden="true"></i>
+                Senaste händelser
+                <span class="ka-sub-count">5</span>
+              </button>
+            </div>
+
+            <div class="ka-sub-card ka-sub-active" data-subtab="avvikelser">
+            <div class="ka-card" style="margin-top:0">
               <div class="ka-card-head">
                 <h3><i class="ti ti-alert-triangle" aria-hidden="true"></i>Avvikelser & observationer · 4 st</h3>
                 <a class="ka-link" href="#">Visa alla →</a>
@@ -4077,8 +5223,10 @@
                 </div>
               </div>
             </div>
+            </div>
 
-            <div class="ka-card" style="margin-top:12px">
+            <div class="ka-sub-card" data-subtab="handelser">
+            <div class="ka-card" style="margin-top:0">
               <div class="ka-card-head">
                 <h3><i class="ti ti-history" aria-hidden="true"></i>Senaste händelser i kommunen</h3>
                 <a class="ka-link" href="#">Visa full logg →</a>
@@ -4126,13 +5274,217 @@
                 </div>
               </div>
             </div>
+            </div>
+
+            <div class="ka-chart-card"><div class="ka-card-head"><h3><i class="ti ti-chart-bar" aria-hidden="true"></i>Avvikelser senaste 7 dygnen</h3><div class="ka-chart-legend"><span><span class="legend-dot crit"></span>Kritiska</span><span><span class="legend-dot warn"></span>Varningar</span></div></div><svg class="ka-chart-svg" viewBox="0 0 552 190" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Stapeldiagram med antal avvikelser per dag senaste sju dygnen"><line x1="10" y1="144" x2="542" y2="144" stroke="var(--line)" stroke-width="0.5"/><g class="ka-chart-bar"><rect x="10" y="74.66666666666667" width="38" height="52.0" rx="3" class="bar-warn"/><rect x="10" y="126.66666666666667" width="38" height="17.333333333333332" rx="3" class="bar-crit"/><text x="29.0" y="66.66666666666667" class="ka-chart-total" text-anchor="middle">8</text><text x="29.0" y="162" class="ka-chart-day" text-anchor="middle">Mån</text><text x="29.0" y="176" class="ka-chart-date" text-anchor="middle">12/5</text></g><g class="ka-chart-bar"><rect x="86" y="57.333333333333336" width="38" height="78.0" rx="3" class="bar-warn"/><rect x="86" y="135.33333333333334" width="38" height="8.666666666666666" rx="3" class="bar-crit"/><text x="105.0" y="49.33333333333334" class="ka-chart-total" text-anchor="middle">10</text><text x="105.0" y="162" class="ka-chart-day" text-anchor="middle">Tis</text><text x="105.0" y="176" class="ka-chart-date" text-anchor="middle">13/5</text></g><g class="ka-chart-bar"><rect x="162" y="74.66666666666667" width="38" height="60.666666666666664" rx="3" class="bar-warn"/><rect x="162" y="135.33333333333334" width="38" height="8.666666666666666" rx="3" class="bar-crit"/><text x="181.0" y="66.66666666666667" class="ka-chart-total" text-anchor="middle">8</text><text x="181.0" y="162" class="ka-chart-day" text-anchor="middle">Ons</text><text x="181.0" y="176" class="ka-chart-date" text-anchor="middle">14/5</text></g><g class="ka-chart-bar"><rect x="238" y="74.66666666666667" width="38" height="43.33333333333333" rx="3" class="bar-warn"/><rect x="238" y="118.0" width="38" height="26.0" rx="3" class="bar-crit"/><text x="257.0" y="66.66666666666667" class="ka-chart-total" text-anchor="middle">8</text><text x="257.0" y="162" class="ka-chart-day" text-anchor="middle">Tor</text><text x="257.0" y="176" class="ka-chart-date" text-anchor="middle">15/5</text></g><g class="ka-chart-bar"><rect x="314" y="31.33333333333334" width="38" height="95.33333333333333" rx="3" class="bar-warn"/><rect x="314" y="126.66666666666667" width="38" height="17.333333333333332" rx="3" class="bar-crit"/><text x="333.0" y="23.33333333333333" class="ka-chart-total" text-anchor="middle">13</text><text x="333.0" y="162" class="ka-chart-day" text-anchor="middle">Fre</text><text x="333.0" y="176" class="ka-chart-date" text-anchor="middle">16/5</text></g><g class="ka-chart-bar"><rect x="390" y="22.66666666666668" width="38" height="86.66666666666666" rx="3" class="bar-warn"/><rect x="390" y="109.33333333333334" width="38" height="34.666666666666664" rx="3" class="bar-crit"/><text x="409.0" y="14.666666666666671" class="ka-chart-total" text-anchor="middle">14</text><text x="409.0" y="162" class="ka-chart-day" text-anchor="middle">Lör</text><text x="409.0" y="176" class="ka-chart-date" text-anchor="middle">17/5</text></g><g class="ka-chart-bar today"><rect x="466" y="14.000000000000005" width="38" height="121.33333333333333" rx="3" class="bar-warn"/><rect x="466" y="135.33333333333334" width="38" height="8.666666666666666" rx="3" class="bar-crit"/><text x="485.0" y="6.0" class="ka-chart-total" text-anchor="middle">15</text><text x="485.0" y="162" class="ka-chart-day today" text-anchor="middle">Sön</text><text x="485.0" y="176" class="ka-chart-date" text-anchor="middle">18/5</text></g></svg></div>
+          </main>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="view" id="view-hantera-enheter">
+<section class="light">
+  <div class="wrap">
+    <div class="eyebrow">Hantera enheter</div>
+    <h2 class="section-title">Alla hubbar i en lista</h2>
+    <p class="section-lead">
+      Här syns hela flottan av Climax-hubbar som ett urval. Volyminställningar finns inte här —
+      de hör hemma inne i hubbens detaljvy där alla roller kan ändra dem. Den här vyn handlar om
+      att hitta rätt enhet snabbt och se status på en blick. Klick på en rad öppnar hubben.
+    </p>
+
+    <div class="mockup-stage">
+      <div class="mockup-meta">
+        <span>HANTERA ENHETER · VINGÅKERS KOMMUN</span>
+        <div class="dot-row"><span></span><span></span><span></span></div>
+      </div>
+
+      <div class="dash">
+        <div class="dash-head">
+          <div class="dh-left">
+            <svg viewBox="0 0 24 22" width="24" height="22" aria-hidden="true">
+              <defs>
+                <clipPath id="lhen"><rect x="0" y="0" width="12" height="22"/></clipPath>
+                <clipPath id="rhen"><rect x="12" y="0" width="12" height="22"/></clipPath>
+              </defs>
+              <path d="M12 20.5s-8.5-5.8-8.5-12A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 8.5 2.5c0 6.2-8.5 12-8.5 12z" fill="#00D9A8" clip-path="url(#lhen)"/>
+              <path d="M12 20.5s-8.5-5.8-8.5-12A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 8.5 2.5c0 6.2-8.5 12-8.5 12z" fill="#FF7A8A" clip-path="url(#rhen)"/>
+            </svg>
+            Digital Care
+          </div>
+          <div class="dh-right">
+            <div class="dh-bell"><i class="ti ti-bell" aria-hidden="true"></i></div>
+            <span class="hide-on-sensapp">Nehat Abazi · Admin</span>
+            <span class="show-on-sensapp">Freddy Karlsson · Sensapp</span>
+            <div class="dh-avatar hide-on-sensapp">NA</div>
+            <div class="dh-avatar show-on-sensapp">FK</div>
+          </div>
+        </div>
+
+        <div class="dash-body">
+          <nav class="dash-nav">
+            <div class="nav-item"><i class="ti ti-layout-dashboard" aria-hidden="true"></i>Översikt</div>
+            <div class="nav-item"><i class="ti ti-users" aria-hidden="true"></i>Brukare</div>
+            <div class="nav-item active"><i class="ti ti-broadcast" aria-hidden="true"></i>Enheter</div>
+            <div class="nav-item"><i class="ti ti-bell" aria-hidden="true"></i>Larm</div>
+            <div class="nav-item"><i class="ti ti-history" aria-hidden="true"></i>Logg</div>
+            <div class="nav-divider">Administration</div>
+            <div class="nav-item"><i class="ti ti-user-shield" aria-hidden="true"></i>Användare</div>
+            <div class="nav-item"><i class="ti ti-message-circle" aria-hidden="true"></i>Support</div>
+          </nav>
+
+          <main class="dash-main">
+            <div class="page-head">
+              <h2>Hantera enheter</h2>
+              <p>20 hubbar &middot; Vingåkers kommun &middot; Måndag 18 maj 2026, 08:54</p>
+            </div>
+
+            <div class="filter-bar">
+              <div class="filter-chips" role="tablist" id="enheter-filter-chips">
+                <button class="chip active" data-filter="all" type="button"><i class="ti ti-list" aria-hidden="true"></i>Alla <span class="chip-count">20</span></button>
+                <button class="chip" data-filter="online" type="button"><span class="chip-dot ok"></span>Online <span class="chip-count">13</span></button>
+                <button class="chip" data-filter="warning" type="button"><span class="chip-dot warn"></span>Varning <span class="chip-count">4</span></button>
+                <button class="chip" data-filter="offline" type="button"><span class="chip-dot crit"></span>Offline <span class="chip-count">3</span></button>
+              </div>
+              <div class="filter-right">
+                <div class="kommun-select show-on-sensapp">
+                  <i class="ti ti-building-community" aria-hidden="true"></i>
+                  Vingåkers kommun
+                  <i class="ti ti-chevron-down" aria-hidden="true"></i>
+                </div>
+                <div class="search-wrap" style="max-width:260px">
+                  <i class="ti ti-search" aria-hidden="true"></i>
+                  <input class="search-input" placeholder="Sök SAT, brukare, adress" type="text" aria-label="Sök enhet">
+                </div>
+              </div>
+            </div>
+
+            <div class="ka-card" style="padding:0;overflow:hidden">
+              <table class="enheter-table">
+                <thead>
+                  <tr>
+                    <th>Status</th>
+                    <th>Serienummer &amp; telefon</th>
+                    <th>Brukare &amp; adress</th>
+                    <th>Operatör</th>
+                    <th>Signal</th>
+                    <th>Tillbehör</th>
+                    <th>Senaste heartbeat</th>
+                  </tr>
+                </thead>
+                <tbody id="enheter-tbody">
+              <tr class="enhet-tr clickable" data-status="online" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill online"><span class="hub-status-dot"></span>Online</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-1847-554208</div><div class="hub-tel">+46 70 191 02 51</div></div></td><td><div class="hub-brukare-name">Bengt Olsson</div><div class="hub-brukare-addr">Lindvägen 12, Vingåker</div></td><td><span class="op-badge op-tele2">Tele2</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars good" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span><span class="hub-signal-text">-54 dBm</span></div></td><td><span class="hub-acc-count">6</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">14 sek sedan</span></td></tr>
+              <tr class="enhet-tr clickable" data-status="online" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill online"><span class="hub-status-dot"></span>Online</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-9112-330554</div><div class="hub-tel">+46 70 191 02 52</div></div></td><td><div class="hub-brukare-name">Anna Holm</div><div class="hub-brukare-addr">Storgatan 14, Vingåker</div></td><td><span class="op-badge op-tele2">Tele2</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars good" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span><span class="hub-signal-text">-62 dBm</span></div></td><td><span class="hub-acc-count">4</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">32 sek sedan</span></td></tr>
+              <tr class="enhet-tr clickable" data-status="online" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill online"><span class="hub-status-dot"></span>Online</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-5520-441178</div><div class="hub-tel">+46 70 191 02 53</div></div></td><td><div class="hub-brukare-name">Sven Eriksson</div><div class="hub-brukare-addr">Parkvägen 8, Vingåker</div></td><td><span class="op-badge op-telia">Telia</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars good" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span><span class="hub-signal-text">-58 dBm</span></div></td><td><span class="hub-acc-count">5</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">1 min sedan</span></td></tr>
+              <tr class="enhet-tr clickable" data-status="warning" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill warning"><span class="hub-status-dot"></span>Varning</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-7104-228936</div><div class="hub-tel">+46 70 191 02 54</div></div></td><td><div class="hub-brukare-name">Karin Lindberg</div><div class="hub-brukare-addr">Storgatan 4, Vingåker</div></td><td><span class="op-badge op-tele2">Tele2</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars weak" aria-hidden="true"><span class="on"></span><span class="on"></span><span class=""></span><span class=""></span></span><span class="hub-signal-text">-84 dBm</span></div></td><td><span class="hub-acc-count">3</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">4 min sedan</span></td></tr>
+              <tr class="enhet-tr clickable" data-status="online" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill online"><span class="hub-status-dot"></span>Online</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-4471-902915</div><div class="hub-tel">+46 70 191 02 55</div></div></td><td><div class="hub-brukare-name">Olle Nilsson</div><div class="hub-brukare-addr">Skolgatan 22, Vingåker</div></td><td><span class="op-badge op-telia">Telia</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars good" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span><span class="hub-signal-text">-61 dBm</span></div></td><td><span class="hub-acc-count">5</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">21 sek sedan</span></td></tr>
+              <tr class="enhet-tr clickable" data-status="online" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill online"><span class="hub-status-dot"></span>Online</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-2245-117830</div><div class="hub-tel">+46 70 191 02 56</div></div></td><td><div class="hub-brukare-name">Greta Andersson</div><div class="hub-brukare-addr">Lindgatan 7, Vingåker</div></td><td><span class="op-badge op-telia">Telia</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars good" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span><span class="hub-signal-text">-57 dBm</span></div></td><td><span class="hub-acc-count">7</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">8 sek sedan</span></td></tr>
+              <tr class="enhet-tr clickable" data-status="warning" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill warning"><span class="hub-status-dot"></span>Varning</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-8830-554729</div><div class="hub-tel">+46 70 191 02 57</div></div></td><td><div class="hub-brukare-name">Inga Lundström</div><div class="hub-brukare-addr">Björkvägen 19, Vingåker</div></td><td><span class="op-badge op-tele2">Tele2</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars weak" aria-hidden="true"><span class="on"></span><span class=""></span><span class=""></span><span class=""></span></span><span class="hub-signal-text">-86 dBm</span></div></td><td><span class="hub-acc-count">4</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">12 min sedan</span></td></tr>
+              <tr class="enhet-tr clickable" data-status="online" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill online"><span class="hub-status-dot"></span>Online</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-6671-998340</div><div class="hub-tel">+46 70 191 02 58</div></div></td><td><div class="hub-brukare-name">Erik Johansson</div><div class="hub-brukare-addr">Parkvägen 18, Vingåker</div></td><td><span class="op-badge op-telia">Telia</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars good" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span><span class="hub-signal-text">-55 dBm</span></div></td><td><span class="hub-acc-count">5</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">4 sek sedan</span></td></tr>
+              <tr class="enhet-tr clickable" data-status="warning" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill warning"><span class="hub-status-dot"></span>Varning</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-3344-771088</div><div class="hub-tel">+46 70 191 02 59</div></div></td><td><div class="hub-brukare-name">Margareta Sjöberg</div><div class="hub-brukare-addr">Ekgatan 4, Marmorbyn</div></td><td><span class="op-badge op-telia">Telia</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars weak" aria-hidden="true"><span class="on"></span><span class="on"></span><span class=""></span><span class=""></span></span><span class="hub-signal-text">-82 dBm</span></div></td><td><span class="hub-acc-count">6</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">2 min sedan</span></td></tr>
+              <tr class="enhet-tr clickable" data-status="online" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill online"><span class="hub-status-dot"></span>Online</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-9921-002847</div><div class="hub-tel">+46 70 191 02 60</div></div></td><td><div class="hub-brukare-name">Astrid Karlsson</div><div class="hub-brukare-addr">Storgatan 4, Vingåker</div></td><td><span class="op-badge op-tele2">Tele2</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars good" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span><span class="hub-signal-text">-60 dBm</span></div></td><td><span class="hub-acc-count">5</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">47 sek sedan</span></td></tr>
+              <tr class="enhet-tr clickable" data-status="offline" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill offline"><span class="hub-status-dot"></span>Offline</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-2321-932913</div><div class="hub-tel">+46 70 191 02 61</div></div></td><td><div class="hub-brukare-name">Maria Bergström</div><div class="hub-brukare-addr">Björkgatan 7, Vingåker</div></td><td><span class="op-badge op-tele2">Tele2</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars zero" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span class="hub-signal-text">Ingen signal</span></div></td><td><span class="hub-acc-count">6</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">42 h sedan</span></td></tr>
+              <tr class="enhet-tr clickable" data-status="offline" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill offline"><span class="hub-status-dot"></span>Offline</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-7421-118840</div><div class="hub-tel">+46 70 191 02 62</div></div></td><td><div class="hub-brukare-name">Lars Petersson</div><div class="hub-brukare-addr">Skogsvägen 23, Vingåker</div></td><td><span class="op-badge op-tele2">Tele2</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars zero" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span class="hub-signal-text">Ingen signal</span></div></td><td><span class="hub-acc-count">4</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">47 h sedan</span></td></tr>
+              <tr class="enhet-tr clickable" data-status="offline" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill offline"><span class="hub-status-dot"></span>Offline</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-3019-883500</div><div class="hub-tel">+46 70 191 02 63</div></div></td><td><div class="hub-brukare-name">Margareta Sjöberg</div><div class="hub-brukare-addr">Ekgatan 4, Marmorbyn</div></td><td><span class="op-badge op-telia">Telia</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars zero" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span class="hub-signal-text">Ingen signal</span></div></td><td><span class="hub-acc-count">3</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">58 h sedan</span></td></tr>
+              <tr class="enhet-tr clickable" data-status="online" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill online"><span class="hub-status-dot"></span>Online</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-5566-119003</div><div class="hub-tel">+46 70 191 02 64</div></div></td><td><div class="hub-brukare-name">Rune Sjöström</div><div class="hub-brukare-addr">Tallvägen 11, Vingåker</div></td><td><span class="op-badge op-tele2">Tele2</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars okay" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class=""></span></span><span class="hub-signal-text">-67 dBm</span></div></td><td><span class="hub-acc-count">5</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">1 min sedan</span></td></tr>
+              <tr class="enhet-tr clickable" data-status="warning" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill warning"><span class="hub-status-dot"></span>Varning</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-2287-440016</div><div class="hub-tel">+46 70 191 02 65</div></div></td><td><div class="hub-brukare-name">Birgit Hansson</div><div class="hub-brukare-addr">Granvägen 4, Vingåker</div></td><td><span class="op-badge op-tele2">Tele2</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars weak" aria-hidden="true"><span class="on"></span><span class=""></span><span class=""></span><span class=""></span></span><span class="hub-signal-text">-88 dBm</span></div></td><td><span class="hub-acc-count">4</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">6 min sedan</span></td></tr>
+              <tr class="enhet-tr clickable" data-status="online" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill online"><span class="hub-status-dot"></span>Online</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-1144-330229</div><div class="hub-tel">+46 70 191 02 66</div></div></td><td><div class="hub-brukare-name">Stig Pettersson</div><div class="hub-brukare-addr">Bergvägen 9, Vingåker</div></td><td><span class="op-badge op-telia">Telia</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars good" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span><span class="hub-signal-text">-56 dBm</span></div></td><td><span class="hub-acc-count">6</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">11 sek sedan</span></td></tr>
+              <tr class="enhet-tr clickable" data-status="online" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill online"><span class="hub-status-dot"></span>Online</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-8830-774501</div><div class="hub-tel">+46 70 191 02 67</div></div></td><td><div class="hub-brukare-name">Märta Eklund</div><div class="hub-brukare-addr">Sjövägen 3, Marmorbyn</div></td><td><span class="op-badge op-tele2">Tele2</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars good" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span><span class="hub-signal-text">-63 dBm</span></div></td><td><span class="hub-acc-count">5</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">2 min sedan</span></td></tr>
+              <tr class="enhet-tr clickable" data-status="online" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill online"><span class="hub-status-dot"></span>Online</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-9971-005438</div><div class="hub-tel">+46 70 191 02 68</div></div></td><td><div class="hub-brukare-name">Yngve Lindqvist</div><div class="hub-brukare-addr">Hagvägen 14, Vingåker</div></td><td><span class="op-badge op-telia">Telia</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars good" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span><span class="hub-signal-text">-59 dBm</span></div></td><td><span class="hub-acc-count">5</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">38 sek sedan</span></td></tr>
+              <tr class="enhet-tr clickable" data-status="online" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill online"><span class="hub-status-dot"></span>Online</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-4421-880367</div><div class="hub-tel">+46 70 191 02 69</div></div></td><td><div class="hub-brukare-name">Karin Persson</div><div class="hub-brukare-addr">Vasagatan 6, Vingåker</div></td><td><span class="op-badge op-telia">Telia</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars good" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span><span class="hub-signal-text">-64 dBm</span></div></td><td><span class="hub-acc-count">6</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">1 min sedan</span></td></tr>
+              <tr class="enhet-tr clickable" data-status="online" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill online"><span class="hub-status-dot"></span>Online</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-3380-119234</div><div class="hub-tel">+46 70 191 02 70</div></div></td><td><div class="hub-brukare-name">Ingvar Bergman</div><div class="hub-brukare-addr">Strandvägen 21, Vingåker</div></td><td><span class="op-badge op-tele2">Tele2</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars okay" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class=""></span></span><span class="hub-signal-text">-65 dBm</span></div></td><td><span class="hub-acc-count">4</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">53 sek sedan</span></td></tr>
+                </tbody>
+              </table>
+            </div>
           </main>
         </div>
       </div>
     </div>
   </div>
 </section>
+</div>
 
+<div class="view" id="view-nehat-varning">
+<section class="light">
+  <div class="wrap">
+    <div class="eyebrow">Kommun-admin · Varning</div>
+    <h2 class="section-title">Enheter som behöver uppmärksamhet</h2>
+    <p class="section-lead">
+      Varningar är gulflagg — inget akut, men något har avvikit från det normala. Försämrad signal,
+      lågt batteri, återkommande falska larm, operatörsproblem. Klick på en rad öppnar hubben i
+      Sensapp-vy där åtgärderna ligger samlade.
+    </p>
+
+    <div class="mockup-stage">
+      <div class="mockup-meta">
+        <span>KOMMUN-ADMIN · VARNINGAR · 14 ST</span>
+        <div class="dot-row"><span></span><span></span><span></span></div>
+      </div>
+
+      <div class="dash">
+        <div class="dash-head">
+          <div class="dh-left">
+            <svg viewBox="0 0 24 22" width="24" height="22" aria-hidden="true">
+              <defs>
+                <clipPath id="lhwa"><rect x="0" y="0" width="12" height="22"/></clipPath>
+                <clipPath id="rhwa"><rect x="12" y="0" width="12" height="22"/></clipPath>
+              </defs>
+              <path d="M12 20.5s-8.5-5.8-8.5-12A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 8.5 2.5c0 6.2-8.5 12-8.5 12z" fill="#00D9A8" clip-path="url(#lhwa)"/>
+              <path d="M12 20.5s-8.5-5.8-8.5-12A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 8.5 2.5c0 6.2-8.5 12-8.5 12z" fill="#FF7A8A" clip-path="url(#rhwa)"/>
+            </svg>
+            Digital Care
+          </div>
+          <div class="dh-right">
+            <div class="dh-bell"><i class="ti ti-bell" aria-hidden="true"></i></div>
+            <span>Nehat Abazi · Admin</span>
+            <div class="dh-avatar">NA</div>
+          </div>
+        </div>
+
+        <div class="dash-body">
+          <nav class="dash-nav">
+            <div class="nav-item"><i class="ti ti-layout-dashboard" aria-hidden="true"></i>Översikt</div>
+            <div class="nav-item"><i class="ti ti-users" aria-hidden="true"></i>Brukare</div>
+            <div class="nav-item active"><i class="ti ti-broadcast" aria-hidden="true"></i>Enheter</div>
+            <div class="nav-item"><i class="ti ti-bell" aria-hidden="true"></i>Larm</div>
+            <div class="nav-item"><i class="ti ti-history" aria-hidden="true"></i>Logg</div>
+            <div class="nav-divider">Administration</div>
+            <div class="nav-item"><i class="ti ti-user-shield" aria-hidden="true"></i>Användare</div>
+            <div class="nav-item"><i class="ti ti-message-circle" aria-hidden="true"></i>Support</div>
+          </nav>
+
+          <main class="dash-main">
+            <div class="page-head">
+              <h2>Varningar</h2>
+              <p>14 enheter behöver uppmärksamhet &middot; Måndag 18 maj 2026, 08:54</p>
+            </div>
+
+            <div class="warning-list">
+              <div class="warning-row clickable" data-goto="nehat/varning/sat-7104-228936" tabindex="0"><div class="warning-left"><div class="warning-sat">SAT-7104-228936</div><div class="warning-name">Karin Lindberg &middot; <span class="warning-addr">Storgatan 4, Vingåker</span></div></div><div class="warning-mid"><div class="warning-problem-title">Signal försämrad</div><div class="warning-problem-detail">−84 dBm · trend försämrad</div></div><div class="warning-right"><div class="warning-acc"><i class="ti ti-plug-connected" aria-hidden="true"></i>3 anslutna enheter</div><span class="warning-pill"><span class="warning-dot"></span>Varning &middot; 4 min</span><i class="ti ti-chevron-right warning-chev" aria-hidden="true"></i></div></div>
+              <div class="warning-row clickable" data-goto="nehat/varning/sat-8830-554729" tabindex="0"><div class="warning-left"><div class="warning-sat">SAT-8830-554729</div><div class="warning-name">Inga Lundström &middot; <span class="warning-addr">Björkvägen 19, Vingåker</span></div></div><div class="warning-mid"><div class="warning-problem-title">Signal försämrad</div><div class="warning-problem-detail">−86 dBm · återkommande tapp</div></div><div class="warning-right"><div class="warning-acc"><i class="ti ti-plug-connected" aria-hidden="true"></i>4 anslutna enheter</div><span class="warning-pill"><span class="warning-dot"></span>Varning &middot; 12 min</span><i class="ti ti-chevron-right warning-chev" aria-hidden="true"></i></div></div>
+              <div class="warning-row clickable" data-goto="nehat/varning/sat-3344-771088" tabindex="0"><div class="warning-left"><div class="warning-sat">SAT-3344-771088</div><div class="warning-name">Margareta Sjöberg &middot; <span class="warning-addr">Ekgatan 4, Marmorbyn</span></div></div><div class="warning-mid"><div class="warning-problem-title">Signal försämrad</div><div class="warning-problem-detail">−82 dBm · 3 missade check-in</div></div><div class="warning-right"><div class="warning-acc"><i class="ti ti-plug-connected" aria-hidden="true"></i>6 anslutna enheter</div><span class="warning-pill"><span class="warning-dot"></span>Varning &middot; 2 min</span><i class="ti ti-chevron-right warning-chev" aria-hidden="true"></i></div></div>
+              <div class="warning-row clickable" data-goto="nehat/varning/sat-2287-440016" tabindex="0"><div class="warning-left"><div class="warning-sat">SAT-2287-440016</div><div class="warning-name">Birgit Hansson &middot; <span class="warning-addr">Granvägen 4, Vingåker</span></div></div><div class="warning-mid"><div class="warning-problem-title">Signal försämrad</div><div class="warning-problem-detail">−88 dBm · gränsvärde</div></div><div class="warning-right"><div class="warning-acc"><i class="ti ti-plug-connected" aria-hidden="true"></i>4 anslutna enheter</div><span class="warning-pill"><span class="warning-dot"></span>Varning &middot; 6 min</span><i class="ti ti-chevron-right warning-chev" aria-hidden="true"></i></div></div>
+              <div class="warning-row clickable" data-goto="nehat/varning/sat-1847-554208" tabindex="0"><div class="warning-left"><div class="warning-sat">SAT-1847-554208</div><div class="warning-name">Bengt Olsson &middot; <span class="warning-addr">Lindvägen 12, Vingåker</span></div></div><div class="warning-mid"><div class="warning-problem-title">Lågt batteri</div><div class="warning-problem-detail">Rökdetektor 12 % batteri</div></div><div class="warning-right"><div class="warning-acc"><i class="ti ti-plug-connected" aria-hidden="true"></i>6 anslutna enheter</div><span class="warning-pill"><span class="warning-dot"></span>Varning &middot; 1 t</span><i class="ti ti-chevron-right warning-chev" aria-hidden="true"></i></div></div>
+              <div class="warning-row clickable" data-goto="nehat/varning/sat-5520-441178" tabindex="0"><div class="warning-left"><div class="warning-sat">SAT-5520-441178</div><div class="warning-name">Sven Eriksson &middot; <span class="warning-addr">Parkvägen 8, Vingåker</span></div></div><div class="warning-mid"><div class="warning-problem-title">Lågt batteri</div><div class="warning-problem-detail">Larmknapp 18 % batteri</div></div><div class="warning-right"><div class="warning-acc"><i class="ti ti-plug-connected" aria-hidden="true"></i>5 anslutna enheter</div><span class="warning-pill"><span class="warning-dot"></span>Varning &middot; 3 t</span><i class="ti ti-chevron-right warning-chev" aria-hidden="true"></i></div></div>
+              <div class="warning-row clickable" data-goto="nehat/varning/sat-9921-002847" tabindex="0"><div class="warning-left"><div class="warning-sat">SAT-9921-002847</div><div class="warning-name">Astrid Karlsson &middot; <span class="warning-addr">Storgatan 4, Vingåker</span></div></div><div class="warning-mid"><div class="warning-problem-title">Återkommande larm</div><div class="warning-problem-detail">7 falska larm senaste dygnet</div></div><div class="warning-right"><div class="warning-acc"><i class="ti ti-plug-connected" aria-hidden="true"></i>5 anslutna enheter</div><span class="warning-pill"><span class="warning-dot"></span>Varning &middot; 2 t</span><i class="ti ti-chevron-right warning-chev" aria-hidden="true"></i></div></div>
+              <div class="warning-row clickable" data-goto="nehat/varning/sat-4471-902915" tabindex="0"><div class="warning-left"><div class="warning-sat">SAT-4471-902915</div><div class="warning-name">Olle Nilsson &middot; <span class="warning-addr">Skolgatan 22, Vingåker</span></div></div><div class="warning-mid"><div class="warning-problem-title">Återkommande larm</div><div class="warning-problem-detail">4 falska larm senaste dygnet</div></div><div class="warning-right"><div class="warning-acc"><i class="ti ti-plug-connected" aria-hidden="true"></i>5 anslutna enheter</div><span class="warning-pill"><span class="warning-dot"></span>Varning &middot; 4 t</span><i class="ti ti-chevron-right warning-chev" aria-hidden="true"></i></div></div>
+              <div class="warning-row clickable" data-goto="nehat/varning/sat-5566-119003" tabindex="0"><div class="warning-left"><div class="warning-sat">SAT-5566-119003</div><div class="warning-name">Rune Sjöström &middot; <span class="warning-addr">Tallvägen 11, Vingåker</span></div></div><div class="warning-mid"><div class="warning-problem-title">Fördröjd kvittens</div><div class="warning-problem-detail">5 larm utan kvittens inom SLA</div></div><div class="warning-right"><div class="warning-acc"><i class="ti ti-plug-connected" aria-hidden="true"></i>5 anslutna enheter</div><span class="warning-pill"><span class="warning-dot"></span>Varning &middot; 5 t</span><i class="ti ti-chevron-right warning-chev" aria-hidden="true"></i></div></div>
+              <div class="warning-row clickable" data-goto="nehat/varning/sat-6671-998340" tabindex="0"><div class="warning-left"><div class="warning-sat">SAT-6671-998340</div><div class="warning-name">Erik Johansson &middot; <span class="warning-addr">Parkvägen 18, Vingåker</span></div></div><div class="warning-mid"><div class="warning-problem-title">Operatörsproblem</div><div class="warning-problem-detail">Tele2-mast ostabil sedan 06:00</div></div><div class="warning-right"><div class="warning-acc"><i class="ti ti-plug-connected" aria-hidden="true"></i>5 anslutna enheter</div><span class="warning-pill"><span class="warning-dot"></span>Varning &middot; 22 min</span><i class="ti ti-chevron-right warning-chev" aria-hidden="true"></i></div></div>
+              <div class="warning-row clickable" data-goto="nehat/varning/sat-9971-005438" tabindex="0"><div class="warning-left"><div class="warning-sat">SAT-9971-005438</div><div class="warning-name">Yngve Lindqvist &middot; <span class="warning-addr">Hagvägen 14, Vingåker</span></div></div><div class="warning-mid"><div class="warning-problem-title">Operatörsproblem</div><div class="warning-problem-detail">Tele2-mast ostabil sedan 06:00</div></div><div class="warning-right"><div class="warning-acc"><i class="ti ti-plug-connected" aria-hidden="true"></i>5 anslutna enheter</div><span class="warning-pill"><span class="warning-dot"></span>Varning &middot; 22 min</span><i class="ti ti-chevron-right warning-chev" aria-hidden="true"></i></div></div>
+              <div class="warning-row clickable" data-goto="nehat/varning/sat-1144-330229" tabindex="0"><div class="warning-left"><div class="warning-sat">SAT-1144-330229</div><div class="warning-name">Stig Pettersson &middot; <span class="warning-addr">Bergvägen 9, Vingåker</span></div></div><div class="warning-mid"><div class="warning-problem-title">Lågt batteri</div><div class="warning-problem-detail">GPS-klocka 14 % batteri</div></div><div class="warning-right"><div class="warning-acc"><i class="ti ti-plug-connected" aria-hidden="true"></i>6 anslutna enheter</div><span class="warning-pill"><span class="warning-dot"></span>Varning &middot; 6 t</span><i class="ti ti-chevron-right warning-chev" aria-hidden="true"></i></div></div>
+              <div class="warning-row clickable" data-goto="nehat/varning/sat-2245-117830" tabindex="0"><div class="warning-left"><div class="warning-sat">SAT-2245-117830</div><div class="warning-name">Greta Andersson &middot; <span class="warning-addr">Lindgatan 7, Vingåker</span></div></div><div class="warning-mid"><div class="warning-problem-title">Lågt batteri</div><div class="warning-problem-detail">Fallsensor 16 % batteri</div></div><div class="warning-right"><div class="warning-acc"><i class="ti ti-plug-connected" aria-hidden="true"></i>7 anslutna enheter</div><span class="warning-pill"><span class="warning-dot"></span>Varning &middot; 5 t</span><i class="ti ti-chevron-right warning-chev" aria-hidden="true"></i></div></div>
+              <div class="warning-row clickable" data-goto="nehat/varning/sat-3380-119234" tabindex="0"><div class="warning-left"><div class="warning-sat">SAT-3380-119234</div><div class="warning-name">Ingvar Bergman &middot; <span class="warning-addr">Strandvägen 21, Vingåker</span></div></div><div class="warning-mid"><div class="warning-problem-title">Återkommande larm</div><div class="warning-problem-detail">3 falska larm senaste dygnet</div></div><div class="warning-right"><div class="warning-acc"><i class="ti ti-plug-connected" aria-hidden="true"></i>4 anslutna enheter</div><span class="warning-pill"><span class="warning-dot"></span>Varning &middot; 8 t</span><i class="ti ti-chevron-right warning-chev" aria-hidden="true"></i></div></div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 </div>
 
 <div class="view" id="view-nehat-anvandare">
@@ -5175,6 +6527,40 @@
         </div>
 
         <div class="bs-section">
+          <div class="bs-vol-card">
+            <div class="bs-vol-head">
+              <div class="bs-vol-title">
+                <i class="ti ti-volume" aria-hidden="true"></i>
+                <span>Volym &amp; ljud</span>
+              </div>
+              <span class="bs-vol-help">Ändras direkt på hubben i Bengts hem</span>
+            </div>
+            <div class="bs-vol-grid">
+              <div class="bs-vol-row">
+                <div class="bs-vol-label">
+                  <span class="bs-vol-name"><i class="ti ti-volume" aria-hidden="true"></i>Högtalarvolym</span>
+                  <span class="bs-vol-desc">Hur högt hubben larmar och svarar</span>
+                </div>
+                <div class="bs-vol-control">
+                  <input type="range" min="0" max="10" value="7" class="bs-vol-range" aria-label="Högtalarvolym">
+                  <span class="bs-vol-value">7 / 10</span>
+                </div>
+              </div>
+              <div class="bs-vol-row">
+                <div class="bs-vol-label">
+                  <span class="bs-vol-name"><i class="ti ti-message-circle" aria-hidden="true"></i>Promptvolym</span>
+                  <span class="bs-vol-desc">Röstmeddelanden och bekräftelser</span>
+                </div>
+                <div class="bs-vol-control">
+                  <input type="range" min="0" max="10" value="5" class="bs-vol-range" aria-label="Promptvolym">
+                  <span class="bs-vol-value">5 / 10</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bs-section">
           <h3 class="bs-section-title">Anslutna enheter (5 av max 100)</h3>
           <div class="bs-devices">
             <div class="bs-device warn">
@@ -5737,11 +7123,102 @@
       breadcrumb: ['Sensapp super-admin', 'NOC', 'Maria Bergström — Hub-detalj'],
       back: 'sensapp/noc'
     },
+    'sensapp/hub-tech/maria': {
+      view: 'view-hub-tech',
+      role: 'sensapp',
+      title: 'Climax-detalj · Maria Bergström',
+      breadcrumb: ['Sensapp super-admin', 'NOC', 'Maria Bergström', 'Detaljerad information'],
+      back: 'sensapp/noc/maria-hub'
+    },
+    'sensapp/hantera-enheter': {
+      view: 'view-hantera-enheter',
+      role: 'sensapp',
+      title: 'Sensapp · Hantera enheter',
+      breadcrumb: ['Sensapp super-admin', 'Hantera enheter'],
+      back: 'sensapp/noc',
+      filter: 'all',
+      scope: 'sensapp'
+    },
+    'sensapp/hantera-enheter/online': {
+      view: 'view-hantera-enheter',
+      role: 'sensapp',
+      title: 'Sensapp · Hantera enheter · Online',
+      breadcrumb: ['Sensapp super-admin', 'Hantera enheter', 'Online'],
+      back: 'sensapp/noc',
+      filter: 'online',
+      scope: 'sensapp'
+    },
+    'sensapp/hantera-enheter/offline': {
+      view: 'view-hantera-enheter',
+      role: 'sensapp',
+      title: 'Sensapp · Hantera enheter · Offline',
+      breadcrumb: ['Sensapp super-admin', 'Hantera enheter', 'Offline'],
+      back: 'sensapp/noc',
+      filter: 'offline',
+      scope: 'sensapp'
+    },
+    'sensapp/hantera-enheter/warning': {
+      view: 'view-hantera-enheter',
+      role: 'sensapp',
+      title: 'Sensapp · Hantera enheter · Varning',
+      breadcrumb: ['Sensapp super-admin', 'Hantera enheter', 'Varning'],
+      back: 'sensapp/noc',
+      filter: 'warning',
+      scope: 'sensapp'
+    },
+    'sensapp/hantera-enheter/hub/maria': {
+      view: 'view-noc-hub',
+      role: 'sensapp',
+      title: 'Hub-detalj',
+      breadcrumb: ['Sensapp super-admin', 'Hantera enheter', 'Hub-detalj'],
+      back: 'sensapp/hantera-enheter'
+    },
     'nehat/oversikt': {
       view: 'view-kommun',
       role: 'nehat',
       title: 'Kommun-admin · Översikt',
       breadcrumb: ['Kommun-admin', 'Översikt']
+    },
+    'nehat/hantera-enheter': {
+      view: 'view-hantera-enheter',
+      role: 'nehat',
+      title: 'Kommun-admin · Hantera enheter',
+      breadcrumb: ['Kommun-admin', 'Enheter'],
+      back: 'nehat/oversikt',
+      filter: 'all',
+      scope: 'nehat'
+    },
+    'nehat/hantera-enheter/online': {
+      view: 'view-hantera-enheter',
+      role: 'nehat',
+      title: 'Kommun-admin · Hantera enheter · Online',
+      breadcrumb: ['Kommun-admin', 'Enheter', 'Online'],
+      back: 'nehat/oversikt',
+      filter: 'online',
+      scope: 'nehat'
+    },
+    'nehat/hantera-enheter/offline': {
+      view: 'view-hantera-enheter',
+      role: 'nehat',
+      title: 'Kommun-admin · Hantera enheter · Offline',
+      breadcrumb: ['Kommun-admin', 'Enheter', 'Offline'],
+      back: 'nehat/oversikt',
+      filter: 'offline',
+      scope: 'nehat'
+    },
+    'nehat/hantera-enheter/hub/maria': {
+      view: 'view-noc-hub',
+      role: 'nehat',
+      title: 'Hub-detalj',
+      breadcrumb: ['Kommun-admin', 'Enheter', 'Hub-detalj'],
+      back: 'nehat/hantera-enheter'
+    },
+    'nehat/varning': {
+      view: 'view-nehat-varning',
+      role: 'nehat',
+      title: 'Kommun-admin · Varningar',
+      breadcrumb: ['Kommun-admin', 'Varningar'],
+      back: 'nehat/oversikt'
     },
     'nehat/anvandare': {
       view: 'view-nehat-anvandare',
@@ -5860,13 +7337,49 @@
 
   function route() {
     var hash = location.hash.replace(/^#/, '');
-    if (!hash || !ROUTES[hash]) hash = 'start';
+    if (!hash) hash = 'start';
+    // Dynamic fallback: any nehat/varning/<sat> resolves to noc-hub
+    if (!ROUTES[hash] && hash.indexOf('nehat/varning/') === 0) {
+      var satKey = hash.substring('nehat/varning/'.length).toUpperCase();
+      ROUTES[hash] = {
+        view: 'view-noc-hub',
+        role: 'nehat',
+        title: 'Varning · Hub-detalj',
+        breadcrumb: ['Kommun-admin', 'Varningar', satKey],
+        back: 'nehat/varning'
+      };
+    }
+    if (!ROUTES[hash]) hash = 'start';
     var r = ROUTES[hash];
 
     // Toggle views
     var views = document.querySelectorAll('.view');
     for (var i = 0; i < views.length; i++) {
       views[i].classList.toggle('active', views[i].id === r.view);
+    }
+
+    // Scope class on body (sensapp / nehat / anna) — controls
+    // .show-on-sensapp / .hide-on-sensapp etc.
+    document.body.classList.remove('scope-sensapp', 'scope-nehat', 'scope-anna');
+    if (r.scope) {
+      document.body.classList.add('scope-' + r.scope);
+    } else if (r.role) {
+      document.body.classList.add('scope-' + r.role);
+    }
+
+    // Apply filter chip preset for hantera-enheter view
+    if (r.view === 'view-hantera-enheter' && r.filter) {
+      var chips = document.querySelectorAll('#enheter-filter-chips .chip');
+      for (var c = 0; c < chips.length; c++) {
+        var fv = chips[c].getAttribute('data-filter');
+        chips[c].classList.toggle('active', fv === r.filter);
+      }
+      // Apply row visibility
+      var rows = document.querySelectorAll('#enheter-tbody .enhet-tr');
+      for (var rIx = 0; rIx < rows.length; rIx++) {
+        var st = rows[rIx].getAttribute('data-status');
+        rows[rIx].style.display = (r.filter === 'all' || st === r.filter) ? '' : 'none';
+      }
     }
 
     // Role switcher state
@@ -5961,12 +7474,29 @@
     });
 
     // Inside Nehat's (kommun-admin) mockups, wire sidebar nav
-    ['view-kommun', 'view-lagg-till', 'view-nehat-anvandare', 'view-nehat-offline', 'view-nehat-larm', 'view-nehat-logg'].forEach(function (id) {
+    ['view-kommun', 'view-lagg-till', 'view-nehat-anvandare', 'view-nehat-offline', 'view-nehat-larm', 'view-nehat-logg', 'view-hantera-enheter', 'view-nehat-varning'].forEach(function (id) {
       wireNavItem(id, 'Översikt', 'nehat/oversikt');
+      wireNavItem(id, 'Enheter', 'nehat/hantera-enheter');
       wireNavItem(id, 'Larm', 'nehat/larm');
       wireNavItem(id, 'Logg', 'nehat/logg');
       wireNavItem(id, 'Användare', 'nehat/anvandare');
       wireNavItem(id, 'Support', 'nehat/support');
+    });
+
+    // Wire Sensapp NOC sidebar (uses .noc-nav-item class — different from .nav-item)
+    function wireNocNavItem(viewId, label, target) {
+      var items = document.querySelectorAll('#' + viewId + ' .noc-nav .noc-nav-item');
+      for (var i = 0; i < items.length; i++) {
+        var text = items[i].textContent.trim();
+        if (text === label) {
+          items[i].classList.add('clickable');
+          items[i].setAttribute('data-goto', target);
+        }
+      }
+    }
+    ['view-noc', 'view-noc-hub'].forEach(function (id) {
+      wireNocNavItem(id, 'Översikt', 'sensapp/noc');
+      wireNocNavItem(id, 'Hubbar', 'sensapp/hantera-enheter');
     });
 
     // Map all larm-tr row clicks (data-goto already set per-row) — all currently
@@ -5990,6 +7520,59 @@
 
     // Inside the Larm-detail view, find the "Tillbaka till larmlista" or similar back action
     // — covered by topbar back-link via the route metadata.
+
+    // ─── Kommun-admin top tab toggle (Flotta-överblick ↔ Avvikelser & händelser) ──
+    var vtBtns = document.querySelectorAll('#view-kommun .vt-option');
+    for (var v = 0; v < vtBtns.length; v++) {
+      vtBtns[v].addEventListener('click', function (ev) {
+        var label = ev.currentTarget.textContent.trim().toLowerCase();
+        var target = (label.indexOf('flotta') !== -1) ? 'flotta' : 'avvikelser';
+        // Toggle ka-tab visibility
+        var tabs = document.querySelectorAll('#view-kommun .ka-tab');
+        for (var t = 0; t < tabs.length; t++) {
+          tabs[t].classList.toggle('ka-tab-active', tabs[t].getAttribute('data-tab') === target);
+        }
+        // Update all .vt-option active states (both layouts share same toggle markup)
+        var all = document.querySelectorAll('#view-kommun .vt-option');
+        for (var a = 0; a < all.length; a++) {
+          var lbl = all[a].textContent.trim().toLowerCase();
+          var isTarget = (target === 'flotta') ? (lbl.indexOf('flotta') !== -1) : (lbl.indexOf('avvikelser') !== -1);
+          all[a].classList.toggle('active', isTarget);
+        }
+      });
+    }
+
+    // ─── Sub-toggle inside Avvikelser tab (Observationer ↔ Senaste händelser) ──
+    var subBtns = document.querySelectorAll('#view-kommun .ka-sub-btn');
+    for (var s = 0; s < subBtns.length; s++) {
+      subBtns[s].addEventListener('click', function (ev) {
+        var target = ev.currentTarget.getAttribute('data-sub');
+        var allSub = document.querySelectorAll('#view-kommun .ka-sub-btn');
+        for (var sb = 0; sb < allSub.length; sb++) {
+          allSub[sb].classList.toggle('ka-sub-active', allSub[sb].getAttribute('data-sub') === target);
+        }
+        var cards = document.querySelectorAll('#view-kommun .ka-sub-card');
+        for (var cc = 0; cc < cards.length; cc++) {
+          cards[cc].classList.toggle('ka-sub-active', cards[cc].getAttribute('data-subtab') === target);
+        }
+      });
+    }
+
+    // ─── Filter chips on hantera-enheter ────────────────────────────────────
+    var fchips = document.querySelectorAll('#enheter-filter-chips .chip');
+    for (var fc = 0; fc < fchips.length; fc++) {
+      fchips[fc].addEventListener('click', function (ev) {
+        var f = ev.currentTarget.getAttribute('data-filter');
+        var siblings = document.querySelectorAll('#enheter-filter-chips .chip');
+        for (var sx = 0; sx < siblings.length; sx++) siblings[sx].classList.remove('active');
+        ev.currentTarget.classList.add('active');
+        var rows = document.querySelectorAll('#enheter-tbody .enhet-tr');
+        for (var rr = 0; rr < rows.length; rr++) {
+          var st = rows[rr].getAttribute('data-status');
+          rows[rr].style.display = (f === 'all' || st === f) ? '' : 'none';
+        }
+      });
+    }
   }
 
   // ─── Init ───────────────────────────────────────────────
