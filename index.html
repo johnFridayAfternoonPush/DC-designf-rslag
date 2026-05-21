@@ -3271,6 +3271,184 @@
     font-variant-numeric: tabular-nums;
   }
 
+  /* I lager — neutral grey status */
+  .hub-status-pill.lager {
+    background: var(--line-2);
+    color: var(--ink-3);
+  }
+  .hub-status-pill.lager .hub-status-dot { background: var(--ink-4); }
+  .chip-dot.idle { background: var(--ink-4); }
+  .lager-tr {
+    background: var(--bg);
+    opacity: 0.92;
+  }
+  .lager-tr:hover { background: var(--line-2); opacity: 1; }
+  .lager-tr .hub-sat-num { color: var(--ink-2); }
+  .lager-tel { color: var(--ink-3) !important; font-weight: 500; }
+  .lager-empty {
+    font-size: 12px;
+    color: var(--ink-3);
+    font-style: italic;
+  }
+  .lager-action-cell { text-align: right; padding-right: 14px !important; }
+  .lager-online-btn {
+    background: var(--marine);
+    color: var(--mint);
+    border: 0;
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+  .lager-online-btn:hover {
+    background: var(--mint);
+    color: var(--marine);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,217,168,0.25);
+  }
+  .lager-online-btn i { font-size: 15px; }
+
+  /* Aktivera enhet — hub-id card variant (mint accent) */
+  .hub-id-card {
+    background: linear-gradient(135deg, var(--marine), #2A3D6E);
+    color: #fff;
+    border: 0;
+  }
+  .hub-id-card h3 {
+    color: rgba(255,255,255,0.7);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 0 0 12px;
+  }
+  .sat-large {
+    font-family: 'SF Mono', Monaco, monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--mint);
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+  }
+  .hub-id-card .id-info p {
+    color: rgba(255,255,255,0.78);
+    font-size: 12px;
+    margin: 4px 0;
+  }
+  .hub-id-card .id-info b { color: #fff; }
+  .hub-id-action {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 0.5px solid rgba(255,255,255,0.15);
+  }
+  .hub-id-swap {
+    color: var(--mint);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .hub-id-swap:hover { color: #fff; }
+
+  .trace-steps {
+    list-style: none;
+    counter-reset: trace;
+    padding: 0;
+    margin: 8px 0 0;
+  }
+  .trace-steps li {
+    counter-increment: trace;
+    position: relative;
+    padding: 6px 0 6px 30px;
+    font-size: 12.5px;
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+  .trace-steps li::before {
+    content: counter(trace);
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--mint-soft);
+    color: var(--mint-dark);
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .check-row {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--ink) !important;
+    font-weight: 500 !important;
+  }
+  .check-row .cb-box {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--mint);
+    color: var(--marine);
+    font-weight: 700;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+  .form-help {
+    font-size: 12px;
+    color: var(--ink-3);
+    margin: -4px 0 10px;
+    line-height: 1.5;
+  }
+  .form-field select {
+    font: inherit;
+    font-size: 13px;
+    padding: 9px 12px;
+    border: 0.5px solid var(--line);
+    border-radius: 8px;
+    background: var(--paper);
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .form-field input[type="datetime-local"] {
+    font: inherit;
+    padding: 9px 12px;
+    border: 0.5px solid var(--line);
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--ink);
+    background: var(--paper);
+    width: 100%;
+  }
+
+  /* Pulse animation for chip-lager to draw attention to "I lager" tab */
+  .chip-lager.active {
+    background: var(--marine);
+    color: var(--mint);
+  }
+  .chip-lager.active .chip-count {
+    background: var(--mint);
+    color: var(--marine);
+  }
+
+
   /* Kommun-select dropdown (Sensapp only) */
   .kommun-select {
     background: var(--paper);
@@ -5537,6 +5715,7 @@
                 <button class="chip" data-filter="online" type="button"><span class="chip-dot ok"></span>Online <span class="chip-count">13</span></button>
                 <button class="chip" data-filter="warning" type="button"><span class="chip-dot warn"></span>Varning <span class="chip-count">4</span></button>
                 <button class="chip" data-filter="offline" type="button"><span class="chip-dot crit"></span>Offline <span class="chip-count">3</span></button>
+                <button class="chip chip-lager" data-filter="lager" type="button"><span class="chip-dot idle"></span>I lager <span class="chip-count">11</span></button>
               </div>
               <div class="filter-right">
                 <div class="kommun-select show-on-sensapp">
@@ -5585,8 +5764,270 @@
               <tr class="enhet-tr clickable" data-status="online" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill online"><span class="hub-status-dot"></span>Online</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-9971-005438</div><div class="hub-tel">+46 70 191 02 68</div></div></td><td><div class="hub-brukare-name">Yngve Lindqvist</div><div class="hub-brukare-addr">Hagvägen 14, Vingåker</div></td><td><span class="op-badge op-good">Telia</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars good" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span><span class="hub-signal-text">-59 dBm</span></div></td><td><span class="hub-acc-count">5</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">38 sek sedan</span></td></tr>
               <tr class="enhet-tr clickable" data-status="online" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill online"><span class="hub-status-dot"></span>Online</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-4421-880367</div><div class="hub-tel">+46 70 191 02 69</div></div></td><td><div class="hub-brukare-name">Karin Persson</div><div class="hub-brukare-addr">Vasagatan 6, Vingåker</div></td><td><span class="op-badge op-good">Telia</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars good" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span><span class="hub-signal-text">-64 dBm</span></div></td><td><span class="hub-acc-count">6</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">1 min sedan</span></td></tr>
               <tr class="enhet-tr clickable" data-status="online" data-goto="nehat/hantera-enheter/hub/maria" tabindex="0"><td><span class="hub-status-pill online"><span class="hub-status-dot"></span>Online</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-3380-119234</div><div class="hub-tel">+46 70 191 02 70</div></div></td><td><div class="hub-brukare-name">Ingvar Bergman</div><div class="hub-brukare-addr">Strandvägen 21, Vingåker</div></td><td><span class="op-badge op-good">Tele2</span></td><td><div class="hub-signal-cell"><span class="hub-signal-bars okay" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class=""></span></span><span class="hub-signal-text">-65 dBm</span></div></td><td><span class="hub-acc-count">4</span> <span class="hub-acc-label">enheter</span></td><td><span class="hub-heartbeat">53 sek sedan</span></td></tr>
+              <tr class="enhet-tr lager-tr" data-status="lager"><td><span class="hub-status-pill lager"><span class="hub-status-dot"></span>I lager</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-0001-557742</div><div class="hub-tel lager-tel">Climax GX-MAX</div></div></td><td colspan="4"><span class="lager-empty">Ej tilldelad någon brukare ännu</span></td><td class="lager-action-cell"><button class="lager-online-btn" data-goto="nehat/aktivera-enhet/sat-0001-557742"><i class="ti ti-power" aria-hidden="true"></i>Ta online</button></td></tr>
+              <tr class="enhet-tr lager-tr" data-status="lager"><td><span class="hub-status-pill lager"><span class="hub-status-dot"></span>I lager</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-0002-668903</div><div class="hub-tel lager-tel">Climax GX-MAX</div></div></td><td colspan="4"><span class="lager-empty">Ej tilldelad någon brukare ännu</span></td><td class="lager-action-cell"><button class="lager-online-btn" data-goto="nehat/aktivera-enhet/sat-0002-668903"><i class="ti ti-power" aria-hidden="true"></i>Ta online</button></td></tr>
+              <tr class="enhet-tr lager-tr" data-status="lager"><td><span class="hub-status-pill lager"><span class="hub-status-dot"></span>I lager</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-0003-779154</div><div class="hub-tel lager-tel">Climax GX-MAX</div></div></td><td colspan="4"><span class="lager-empty">Ej tilldelad någon brukare ännu</span></td><td class="lager-action-cell"><button class="lager-online-btn" data-goto="nehat/aktivera-enhet/sat-0003-779154"><i class="ti ti-power" aria-hidden="true"></i>Ta online</button></td></tr>
+              <tr class="enhet-tr lager-tr" data-status="lager"><td><span class="hub-status-pill lager"><span class="hub-status-dot"></span>I lager</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-0004-880205</div><div class="hub-tel lager-tel">Climax GX-MAX</div></div></td><td colspan="4"><span class="lager-empty">Ej tilldelad någon brukare ännu</span></td><td class="lager-action-cell"><button class="lager-online-btn" data-goto="nehat/aktivera-enhet/sat-0004-880205"><i class="ti ti-power" aria-hidden="true"></i>Ta online</button></td></tr>
+              <tr class="enhet-tr lager-tr" data-status="lager"><td><span class="hub-status-pill lager"><span class="hub-status-dot"></span>I lager</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-0005-991416</div><div class="hub-tel lager-tel">Climax GX-MAX</div></div></td><td colspan="4"><span class="lager-empty">Ej tilldelad någon brukare ännu</span></td><td class="lager-action-cell"><button class="lager-online-btn" data-goto="nehat/aktivera-enhet/sat-0005-991416"><i class="ti ti-power" aria-hidden="true"></i>Ta online</button></td></tr>
+              <tr class="enhet-tr lager-tr" data-status="lager"><td><span class="hub-status-pill lager"><span class="hub-status-dot"></span>I lager</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-0006-002567</div><div class="hub-tel lager-tel">Climax GX-MAX</div></div></td><td colspan="4"><span class="lager-empty">Ej tilldelad någon brukare ännu</span></td><td class="lager-action-cell"><button class="lager-online-btn" data-goto="nehat/aktivera-enhet/sat-0006-002567"><i class="ti ti-power" aria-hidden="true"></i>Ta online</button></td></tr>
+              <tr class="enhet-tr lager-tr" data-status="lager"><td><span class="hub-status-pill lager"><span class="hub-status-dot"></span>I lager</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-0007-113628</div><div class="hub-tel lager-tel">Climax GX-MAX</div></div></td><td colspan="4"><span class="lager-empty">Ej tilldelad någon brukare ännu</span></td><td class="lager-action-cell"><button class="lager-online-btn" data-goto="nehat/aktivera-enhet/sat-0007-113628"><i class="ti ti-power" aria-hidden="true"></i>Ta online</button></td></tr>
+              <tr class="enhet-tr lager-tr" data-status="lager"><td><span class="hub-status-pill lager"><span class="hub-status-dot"></span>I lager</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-0008-224789</div><div class="hub-tel lager-tel">Climax GX-MAX</div></div></td><td colspan="4"><span class="lager-empty">Ej tilldelad någon brukare ännu</span></td><td class="lager-action-cell"><button class="lager-online-btn" data-goto="nehat/aktivera-enhet/sat-0008-224789"><i class="ti ti-power" aria-hidden="true"></i>Ta online</button></td></tr>
+              <tr class="enhet-tr lager-tr" data-status="lager"><td><span class="hub-status-pill lager"><span class="hub-status-dot"></span>I lager</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-0009-335840</div><div class="hub-tel lager-tel">Climax GX-MAX</div></div></td><td colspan="4"><span class="lager-empty">Ej tilldelad någon brukare ännu</span></td><td class="lager-action-cell"><button class="lager-online-btn" data-goto="nehat/aktivera-enhet/sat-0009-335840"><i class="ti ti-power" aria-hidden="true"></i>Ta online</button></td></tr>
+              <tr class="enhet-tr lager-tr" data-status="lager"><td><span class="hub-status-pill lager"><span class="hub-status-dot"></span>I lager</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-0010-446901</div><div class="hub-tel lager-tel">Climax GX-MAX</div></div></td><td colspan="4"><span class="lager-empty">Ej tilldelad någon brukare ännu</span></td><td class="lager-action-cell"><button class="lager-online-btn" data-goto="nehat/aktivera-enhet/sat-0010-446901"><i class="ti ti-power" aria-hidden="true"></i>Ta online</button></td></tr>
+              <tr class="enhet-tr lager-tr" data-status="lager"><td><span class="hub-status-pill lager"><span class="hub-status-dot"></span>I lager</span></td><td><div class="hub-sat-cell"><div class="hub-sat-num">SAT-0011-557062</div><div class="hub-tel lager-tel">Climax GX-MAX</div></div></td><td colspan="4"><span class="lager-empty">Ej tilldelad någon brukare ännu</span></td><td class="lager-action-cell"><button class="lager-online-btn" data-goto="nehat/aktivera-enhet/sat-0011-557062"><i class="ti ti-power" aria-hidden="true"></i>Ta online</button></td></tr>
                 </tbody>
               </table>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="view" id="view-aktivera-enhet">
+<section class="light">
+  <div class="wrap">
+    <div class="eyebrow">Aktivera enhet · Lagerhubb → brukare</div>
+    <h2 class="section-title">Ta en lagerhubb online och tilldela den en brukare</h2>
+    <p class="section-lead">
+      När en ny brukare ska in i systemet plockar Nehat (eller Sensapp) en hubb
+      från lagret och fyller i brukarens uppgifter, område och tillbehör. När
+      formuläret skickas registreras brukaren, hubben aktiveras mot kommunens
+      avtal, och Skyresponse-koppling sätts upp automatiskt.
+    </p>
+
+    <div class="mockup-stage">
+      <div class="mockup-meta">
+        <span>KOMMUN-ADMIN · AKTIVERA ENHET FRÅN LAGER</span>
+        <div class="dot-row"><span></span><span></span><span></span></div>
+      </div>
+
+      <div class="dash">
+        <div class="dash-head">
+          <div class="dh-left">
+            <svg viewBox="0 0 24 22" width="24" height="22" aria-hidden="true">
+              <defs>
+                <clipPath id="lhae"><rect x="0" y="0" width="12" height="22"/></clipPath>
+                <clipPath id="rhae"><rect x="12" y="0" width="12" height="22"/></clipPath>
+              </defs>
+              <path d="M12 20.5s-8.5-5.8-8.5-12A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 8.5 2.5c0 6.2-8.5 12-8.5 12z" fill="#00D9A8" clip-path="url(#lhae)"/>
+              <path d="M12 20.5s-8.5-5.8-8.5-12A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 8.5 2.5c0 6.2-8.5 12-8.5 12z" fill="#FF7A8A" clip-path="url(#rhae)"/>
+            </svg>
+            Digital Care
+          </div>
+          <div class="dh-right">
+            <div class="dh-bell"><i class="ti ti-bell" aria-hidden="true"></i></div>
+            <span class="hide-on-sensapp">Nehat Abazi · Admin</span>
+            <span class="show-on-sensapp">Freddy Ehrenholm · Sensapp</span>
+            <div class="dh-avatar hide-on-sensapp">NA</div>
+            <div class="dh-avatar show-on-sensapp">FE</div>
+          </div>
+        </div>
+
+        <div class="dash-body">
+          <nav class="dash-nav">
+            <div class="nav-item"><i class="ti ti-layout-dashboard" aria-hidden="true"></i>Översikt</div>
+            <div class="nav-item"><i class="ti ti-users" aria-hidden="true"></i>Brukare</div>
+            <div class="nav-item active"><i class="ti ti-broadcast" aria-hidden="true"></i>Enheter</div>
+            <div class="nav-item"><i class="ti ti-bell" aria-hidden="true"></i>Larm</div>
+            <div class="nav-item"><i class="ti ti-history" aria-hidden="true"></i>Logg</div>
+            <div class="nav-divider">Administration</div>
+            <div class="nav-item"><i class="ti ti-user-shield" aria-hidden="true"></i>Användare</div>
+            <div class="nav-item"><i class="ti ti-message-circle" aria-hidden="true"></i>Support</div>
+          </nav>
+
+          <main class="dash-main">
+            <div style="font-size:11px;color:var(--ink-3);margin-bottom:6px;letter-spacing:0.04em">
+              ENHETER &nbsp;/&nbsp; I LAGER &nbsp;/&nbsp; <span style="color:var(--ink)">AKTIVERA ENHET</span>
+            </div>
+            <div class="page-head">
+              <h2>Aktivera enhet och skapa brukare</h2>
+              <p>Hubben kopplas till brukaren och registreras mot kommunens avtal</p>
+            </div>
+
+            <div class="form-layout">
+              <div>
+                <div class="form-card">
+                  <h3>Brukaruppgifter</h3>
+                  <div class="form-grid">
+                    <div class="form-field">
+                      <label>Förnamn</label>
+                      <input value="" placeholder="t.ex. Birgitta">
+                    </div>
+                    <div class="form-field">
+                      <label>Efternamn</label>
+                      <input value="" placeholder="t.ex. Sjöstrand">
+                    </div>
+                    <div class="form-field">
+                      <label>Personnummer</label>
+                      <input value="" placeholder="ÅÅÅÅMMDD-XXXX">
+                    </div>
+                    <div class="form-field">
+                      <label>Födelseår</label>
+                      <input value="" placeholder="1942">
+                    </div>
+                    <div class="form-field full">
+                      <label>Adress</label>
+                      <input value="" placeholder="Gatuadress, ort">
+                    </div>
+                    <div class="form-field">
+                      <label>Telefon (brukare)</label>
+                      <input value="" placeholder="070-XXX XX XX">
+                    </div>
+                    <div class="form-field">
+                      <label>Boendeform</label>
+                      <select>
+                        <option>Ordinärt boende</option>
+                        <option>Särskilt boende</option>
+                        <option>Trygghetsboende</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-card" style="margin-top:14px">
+                  <h3>Anhörig</h3>
+                  <div class="form-grid">
+                    <div class="form-field">
+                      <label>Namn</label>
+                      <input value="" placeholder="t.ex. Lars Sjöstrand">
+                    </div>
+                    <div class="form-field">
+                      <label>Relation</label>
+                      <select>
+                        <option>Son</option>
+                        <option>Dotter</option>
+                        <option>Make</option>
+                        <option>Maka</option>
+                        <option>Annan</option>
+                      </select>
+                    </div>
+                    <div class="form-field">
+                      <label>Telefon</label>
+                      <input value="" placeholder="070-XXX XX XX">
+                    </div>
+                    <div class="form-field">
+                      <label>E-post</label>
+                      <input value="" placeholder="exempel@e-post.se">
+                    </div>
+                    <div class="form-field full">
+                      <label class="check-row">
+                        <span class="cb-box checked">✓</span>
+                        Bjud in till Anhörigappen vid aktivering
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-card" style="margin-top:14px">
+                  <h3>Område &amp; ansvar</h3>
+                  <div class="area-chip-row">
+                    <div class="area-chip selected"><i class="ti ti-check" aria-hidden="true"></i>Norra hemtjänst (47 brukare)</div>
+                    <div class="area-chip"><i class="ti ti-plus" aria-hidden="true"></i>Södra hemtjänst (31 brukare)</div>
+                  </div>
+                  <div class="form-grid" style="margin-top:12px">
+                    <div class="form-field">
+                      <label>MAS-ansvarig</label>
+                      <select>
+                        <option>Britt Lindholm</option>
+                        <option>Annika Söderberg</option>
+                      </select>
+                    </div>
+                    <div class="form-field">
+                      <label>Primär kontaktperson hemtjänst</label>
+                      <input value="" placeholder="Sök bland kommunens medarbetare">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-card" style="margin-top:14px">
+                  <h3>Tillbehör att parkoppla nu</h3>
+                  <p class="form-help">Markera de enheter som ska kopplas till hubben vid installationsbesöket. Övriga tillbehör kan adderas senare från brukarsidan.</p>
+                  <div class="checkbox-list">
+                    <div class="checkbox-row">
+                      <div class="cb-box checked">✓</div>
+                      <div class="cb-label">
+                        Rökdetektor (kök)
+                        <small>Larmar vid rök, vidarebefordras till Skyresponse</small>
+                      </div>
+                    </div>
+                    <div class="checkbox-row">
+                      <div class="cb-box checked">✓</div>
+                      <div class="cb-label">
+                        Fallsensor (sovrum)
+                        <small>Detekterar fall och inaktivitet</small>
+                      </div>
+                    </div>
+                    <div class="checkbox-row">
+                      <div class="cb-box checked">✓</div>
+                      <div class="cb-label">
+                        Larmknapp (halsband)
+                        <small>Manuell larmknapp som brukaren bär</small>
+                      </div>
+                    </div>
+                    <div class="checkbox-row">
+                      <div class="cb-box">&nbsp;</div>
+                      <div class="cb-label">
+                        Dörrkontakt (ytterdörr)
+                        <small>Loggar in- och utgång</small>
+                      </div>
+                    </div>
+                    <div class="checkbox-row">
+                      <div class="cb-box">&nbsp;</div>
+                      <div class="cb-label">
+                        GPS-klocka
+                        <small>Position utomhus, separat enhet med eget abonnemang</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <button class="btn-cancel" data-goto="nehat/hantera-enheter/lager">Avbryt</button>
+                  <button class="btn-create">Aktivera enhet och skapa brukare</button>
+                </div>
+              </div>
+
+              <div>
+                <div class="id-card hub-id-card">
+                  <h3>Tilldelad hubb</h3>
+                  <div class="id-large sat-large">SAT-0001-557742</div>
+                  <div class="id-info">
+                    <p><b>Modell</b> · Climax GX-MAX</p>
+                    <p><b>Lagerstatus</b> · Klar för aktivering</p>
+                    <p><b>Operatör (start)</b> · Tele2 primär, Telia sekundär</p>
+                  </div>
+                  <div class="hub-id-action">
+                    <a class="hub-id-swap" data-goto="nehat/hantera-enheter/lager">Byt till annan hubb →</a>
+                  </div>
+                </div>
+
+                <div class="trace-card">
+                  <h3><i class="ti ti-shield-check" aria-hidden="true"></i>Vad händer vid aktivering</h3>
+                  <ol class="trace-steps">
+                    <li>Brukar-ID genereras enligt SAP-mönstret</li>
+                    <li>Hubben kopplas till brukaren och tas ut ur lagret</li>
+                    <li>Climax kallas hem (heartbeat var 5:e min)</li>
+                    <li>Skyresponse-routing sätts upp automatiskt</li>
+                    <li>Anhörig får inbjudan till Anhörigappen om vald</li>
+                    <li>Allt loggas mot din kommun-admin-ID enligt ADDA-krav</li>
+                  </ol>
+                </div>
+
+                <div class="form-card" style="margin-top:12px">
+                  <h3>Installationsbesök</h3>
+                  <div class="form-field">
+                    <label>Önskad besökstid</label>
+                    <input value="" type="datetime-local">
+                  </div>
+                  <p style="font-size:12px;color:var(--ink-3);line-height:1.55;margin-top:8px">
+                    Hubben är förkonfigurerad. Tekniker behöver bara koppla ström,
+                    starta upp, och parkoppla tillbehören i hemmet.
+                  </p>
+                </div>
+              </div>
             </div>
           </main>
         </div>
@@ -7615,6 +8056,15 @@
       filter: 'warning',
       scope: 'sensapp'
     },
+    'sensapp/hantera-enheter/lager': {
+      view: 'view-hantera-enheter',
+      role: 'sensapp',
+      title: 'Sensapp · Hantera enheter · I lager',
+      breadcrumb: ['Sensapp super-admin', 'Hantera enheter', 'I lager'],
+      back: 'sensapp/noc',
+      filter: 'lager',
+      scope: 'sensapp'
+    },
     'sensapp/hantera-enheter/hub/maria': {
       view: 'view-noc-hub',
       role: 'sensapp',
@@ -7654,6 +8104,22 @@
       back: 'nehat/oversikt',
       filter: 'offline',
       scope: 'nehat'
+    },
+    'nehat/hantera-enheter/lager': {
+      view: 'view-hantera-enheter',
+      role: 'nehat',
+      title: 'Kommun-admin · Hantera enheter · I lager',
+      breadcrumb: ['Kommun-admin', 'Enheter', 'I lager'],
+      back: 'nehat/oversikt',
+      filter: 'lager',
+      scope: 'nehat'
+    },
+    'nehat/aktivera-enhet': {
+      view: 'view-aktivera-enhet',
+      role: 'nehat',
+      title: 'Kommun-admin · Aktivera enhet',
+      breadcrumb: ['Kommun-admin', 'Enheter', 'I lager', 'Aktivera enhet'],
+      back: 'nehat/hantera-enheter/lager'
     },
     'nehat/hantera-enheter/hub/maria': {
       view: 'view-noc-hub',
@@ -7805,6 +8271,17 @@
         back: 'nehat/varning'
       };
     }
+    // Dynamic fallback: nehat/aktivera-enhet/<sat> shows the activation form
+    if (!ROUTES[hash] && hash.indexOf('nehat/aktivera-enhet/') === 0) {
+      var aSat = hash.substring('nehat/aktivera-enhet/'.length).toUpperCase();
+      ROUTES[hash] = {
+        view: 'view-aktivera-enhet',
+        role: 'nehat',
+        title: 'Aktivera ' + aSat,
+        breadcrumb: ['Kommun-admin', 'Enheter', 'I lager', 'Aktivera enhet'],
+        back: 'nehat/hantera-enheter/lager'
+      };
+    }
     if (!ROUTES[hash]) hash = 'start';
     var r = ROUTES[hash];
 
@@ -7834,7 +8311,20 @@
       var rows = document.querySelectorAll('#enheter-tbody .enhet-tr');
       for (var rIx = 0; rIx < rows.length; rIx++) {
         var st = rows[rIx].getAttribute('data-status');
-        rows[rIx].style.display = (r.filter === 'all' || st === r.filter) ? '' : 'none';
+        var showR;
+        if (r.filter === 'all')        showR = (st !== 'lager');
+        else if (r.filter === 'lager') showR = (st === 'lager');
+        else                           showR = (st === r.filter);
+        rows[rIx].style.display = showR ? '' : 'none';
+      }
+    }
+
+    // When entering aktivera-enhet from a specific SAT, populate the SAT display
+    if (r.view === 'view-aktivera-enhet') {
+      var prefix = 'nehat/aktivera-enhet/';
+      var satEl = document.querySelector('#view-aktivera-enhet .sat-large');
+      if (satEl && hash.indexOf(prefix) === 0) {
+        satEl.textContent = hash.substring(prefix.length).toUpperCase();
       }
     }
 
@@ -8026,7 +8516,11 @@
         var rows = document.querySelectorAll('#enheter-tbody .enhet-tr');
         for (var rr = 0; rr < rows.length; rr++) {
           var st = rows[rr].getAttribute('data-status');
-          rows[rr].style.display = (f === 'all' || st === f) ? '' : 'none';
+          var show;
+          if (f === 'all')      show = (st !== 'lager');   // "Alla" = aktiva enheter, lager exkluderas
+          else if (f === 'lager') show = (st === 'lager');
+          else                  show = (st === f);
+          rows[rr].style.display = show ? '' : 'none';
         }
       });
     }
