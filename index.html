@@ -3524,7 +3524,204 @@
     .bs-vol-control { grid-template-columns: 1fr 60px; }
   }
 
-  /* ════ HUB-TECH detailed Climax view (linked from NOC) ════ */
+  /* Done/completed alert cards (greyed out, green check) */
+  .alert-card.done {
+    background: var(--bg);
+    border-color: var(--line);
+    border-left: 3px solid var(--mint);
+    opacity: 0.88;
+    transition: opacity 0.15s ease;
+  }
+  .alert-card.done:hover { opacity: 1; }
+  .alert-card.done .alert-name { color: var(--ink-2); }
+  .alert-card.done .alert-meta { color: var(--ink-3); }
+  .alert-card.done .alert-info { color: var(--ink-3); font-size: 11.5px; }
+  .alert-done-mark {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--mint-soft);
+    color: var(--mint-dark);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+    align-self: center;
+    margin-right: 4px;
+  }
+  .alert-done-mark i { font-weight: 700; }
+
+  .alert-btn-secondary {
+    background: var(--paper);
+    color: var(--marine);
+    border: 1px solid var(--marine);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+  .alert-btn-secondary:hover {
+    background: var(--marine);
+    color: var(--paper);
+  }
+
+  .dm-sec-head.done-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 22px;
+  }
+  .done-head h3 {
+    margin: 0;
+    font-size: 15px;
+    color: var(--ink-2);
+    font-weight: 600;
+  }
+  .done-period {
+    font-size: 11.5px;
+    color: var(--ink-3);
+    font-weight: 500;
+  }
+  .done-foot {
+    margin-top: 4px;
+    text-align: center;
+  }
+  .done-link {
+    display: inline-block;
+    color: var(--marine);
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px 14px;
+    text-decoration: none;
+  }
+  .done-link:hover { color: var(--mint-dark); text-decoration: underline; }
+
+  /* Vidtagna åtgärder — Anna's action log view */
+  .atg-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: var(--paper);
+    border: 0.5px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .atg-day-head {
+    background: var(--line-2);
+    color: var(--ink-3);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border-top: 0.5px solid var(--line);
+  }
+  .atg-day-head:first-child { border-top: 0; }
+  .atg-row {
+    display: grid;
+    grid-template-columns: 70px 36px 1fr 180px 160px;
+    gap: 14px;
+    align-items: center;
+    padding: 14px 18px;
+    border-top: 0.5px solid var(--line-2);
+    transition: background 0.12s ease;
+  }
+  .atg-row:hover { background: var(--bg); }
+  .atg-time {
+    font-family: 'SF Mono', Monaco, monospace;
+    font-size: 12px;
+    color: var(--ink-3);
+    font-weight: 600;
+  }
+  .atg-icon {
+    width: 36px; height: 36px;
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px;
+  }
+  .atg-icon.operator   { background: #E8F0FE;            color: #1A4FBA; }
+  .atg-icon.battery    { background: var(--mint-soft);   color: var(--mint-dark); }
+  .atg-icon.volume     { background: var(--warn-soft);   color: var(--warn-dark); }
+  .atg-icon.connect    { background: var(--mint-soft);   color: var(--mint-dark); }
+  .atg-icon.disconnect { background: var(--line-2);      color: var(--ink-3); }
+  .atg-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .atg-detail {
+    font-weight: 500;
+    color: var(--ink-2);
+  }
+  .atg-brukare {
+    font-size: 11.5px;
+    color: var(--ink-3);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .atg-brukare i { font-size: 13px; }
+  .atg-addr { color: var(--ink-3); }
+  .atg-by {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .atg-avatar {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--mint-soft);
+    color: var(--mint-dark);
+    font-weight: 700;
+    font-size: 11px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .atg-by-name {
+    font-size: 12px;
+    color: var(--ink-2);
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  .atg-sat {
+    font-family: 'SF Mono', Monaco, monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+    text-align: right;
+  }
+  .atg-foot {
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: var(--line-2);
+    border-radius: 8px;
+    font-size: 11.5px;
+    color: var(--ink-3);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.5;
+  }
+  .atg-foot i { color: var(--marine); font-size: 14px; margin-top: 1px; flex-shrink: 0; }
+
+  @media (max-width: 760px) {
+    .atg-row {
+      grid-template-columns: 60px 32px 1fr;
+      gap: 10px;
+      padding: 12px 14px;
+    }
+    .atg-row .atg-by, .atg-row .atg-sat {
+      grid-column: 2 / -1;
+      padding-left: 0;
+    }
+    .atg-sat { text-align: left; padding-top: 4px; }
+  }
+
+
+
   .ht-page {
     background: var(--bg);
     padding: 26px 28px 32px;
@@ -6196,6 +6393,15 @@
               <span class="dm-count">3 ärenden</span>
             </div>
 
+            <div class="alert-card crit">
+              <div class="alert-body">
+                <div class="alert-name">Maria Bergström</div>
+                <div class="alert-meta">Björkgatan 7 · Hem-hubb</div>
+                <div class="alert-info">Offline sedan 14:02 igår — påverkar 6 anslutna enheter</div>
+              </div>
+              <button class="alert-btn">Åtgärda</button>
+            </div>
+
             <div class="alert-card">
               <div class="alert-body">
                 <div class="alert-name">Astrid Karlsson</div>
@@ -6214,24 +6420,44 @@
               <button class="alert-btn">Åtgärda</button>
             </div>
 
-            <div class="alert-card crit">
+            <div class="dm-sec-head done-head"><h3>Åtgärdade ärenden</h3><span class="done-period">Senaste 7 dagarna</span></div>
+            <div class="alert-card done">
+              <div class="alert-done-mark"><i class="ti ti-check" aria-hidden="true"></i></div>
               <div class="alert-body">
-                <div class="alert-name">Maria Bergström</div>
-                <div class="alert-meta">Björkgatan 7 · Hem-hubb</div>
-                <div class="alert-info">Offline sedan 14:02 igår — påverkar 6 anslutna enheter</div>
+                <div class="alert-name">Karin Lindberg</div>
+                <div class="alert-meta">Storgatan 4 · Operatörsbyte Tele2 → Telia</div>
+                <div class="alert-info">Klart 07:18 idag · Du</div>
               </div>
-              <button class="alert-btn">Byt operatör</button>
+              <button class="alert-btn-secondary" data-goto="anna/atgarder">Se vidtagna åtgärder</button>
             </div>
-
-            <div class="mt22">
-              <div class="dm-sec-head"><h3>Snabbåtgärder</h3></div>
-              <div class="quick-grid">
-                <div class="quick-btn"><i class="ti ti-broadcast" aria-hidden="true"></i><p>Byt operatör</p></div>
-                <div class="quick-btn"><i class="ti ti-plug" aria-hidden="true"></i><p>Koppla enhet</p></div>
-                <div class="quick-btn"><i class="ti ti-unlink" aria-hidden="true"></i><p>Ta bort tillkopplad enhet</p></div>
-                <div class="quick-btn"><i class="ti ti-clock-edit" aria-hidden="true"></i><p>Justera tider</p></div>
+            <div class="alert-card done">
+              <div class="alert-done-mark"><i class="ti ti-check" aria-hidden="true"></i></div>
+              <div class="alert-body">
+                <div class="alert-name">Erik Johansson</div>
+                <div class="alert-meta">Parkvägen 18 · Batteri bytt på rökdetektor</div>
+                <div class="alert-info">Klart 06:34 idag · Du</div>
               </div>
+              <button class="alert-btn-secondary" data-goto="anna/atgarder">Se vidtagna åtgärder</button>
             </div>
+            <div class="alert-card done">
+              <div class="alert-done-mark"><i class="ti ti-check" aria-hidden="true"></i></div>
+              <div class="alert-body">
+                <div class="alert-name">Sven Eriksson</div>
+                <div class="alert-meta">Parkvägen 8 · Volymjustering 8 → 7</div>
+                <div class="alert-info">Klart 14:22 igår · Du</div>
+              </div>
+              <button class="alert-btn-secondary" data-goto="anna/atgarder">Se vidtagna åtgärder</button>
+            </div>
+            <div class="alert-card done">
+              <div class="alert-done-mark"><i class="ti ti-check" aria-hidden="true"></i></div>
+              <div class="alert-body">
+                <div class="alert-name">Astrid Karlsson</div>
+                <div class="alert-meta">Storgatan 4 · Ny fallsensor ansluten</div>
+                <div class="alert-info">Klart 17 maj 11:15 · Marcus Ternstedt</div>
+              </div>
+              <button class="alert-btn-secondary" data-goto="anna/atgarder">Se vidtagna åtgärder</button>
+            </div>
+            <div class="done-foot"><a class="done-link" data-goto="anna/atgarder">Visa alla åtgärder denna vecka →</a></div>
 
             <div class="stat-row">
               <div class="stat-pill"><span class="stat-dot ok"></span>286 online</div>
@@ -6245,6 +6471,238 @@
   </div>
 </section>
 
+</div>
+
+<div class="view" id="view-anna-atgarder">
+<section class="light">
+  <div class="wrap">
+    <div class="eyebrow">Daglig användare · Vidtagna åtgärder</div>
+    <h2 class="section-title">Allt som gjorts senaste veckan</h2>
+    <p class="section-lead">
+      Loggen visar varje ändring på en hubb eller ansluten enhet — vad som
+      gjordes, vem som gjorde det, när, och för vilken brukare. Det här är de
+      senaste 7 dagarna. Kommun-admin har samma logg i sin loggvy, och Sensapp
+      har full historik bakåt i tiden för spårbarhetskrav.
+    </p>
+
+    <div class="mockup-stage">
+      <div class="mockup-meta">
+        <span>VINGÅKERS HEMTJÄNST · ANNA MAGNELL · VIDTAGNA ÅTGÄRDER</span>
+        <div class="dot-row"><span></span><span></span><span></span></div>
+      </div>
+
+      <div class="dash">
+        <div class="dash-head">
+          <div class="dh-left">
+            <svg viewBox="0 0 24 22" width="24" height="22" aria-hidden="true">
+              <defs>
+                <clipPath id="lhat"><rect x="0" y="0" width="12" height="22"/></clipPath>
+                <clipPath id="rhat"><rect x="12" y="0" width="12" height="22"/></clipPath>
+              </defs>
+              <path d="M12 20.5s-8.5-5.8-8.5-12A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 8.5 2.5c0 6.2-8.5 12-8.5 12z" fill="#00D9A8" clip-path="url(#lhat)"/>
+              <path d="M12 20.5s-8.5-5.8-8.5-12A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 8.5 2.5c0 6.2-8.5 12-8.5 12z" fill="#FF7A8A" clip-path="url(#rhat)"/>
+            </svg>
+            Digital Care
+          </div>
+          <div class="dh-right">
+            <div class="dh-bell"><i class="ti ti-bell" aria-hidden="true"></i></div>
+            <span>Anna Magnell · Hemtjänst</span>
+            <div class="dh-avatar">AM</div>
+          </div>
+        </div>
+
+        <div class="dash-body">
+          <nav class="dash-nav">
+            <div class="nav-item"><i class="ti ti-layout-dashboard" aria-hidden="true"></i>Översikt</div>
+            <div class="nav-item"><i class="ti ti-users" aria-hidden="true"></i>Mina brukare</div>
+            <div class="nav-item"><i class="ti ti-bell" aria-hidden="true"></i>Larm</div>
+            <div class="nav-item active"><i class="ti ti-check" aria-hidden="true"></i>Vidtagna åtgärder</div>
+            <div class="nav-divider">Hjälp</div>
+            <div class="nav-item"><i class="ti ti-message-circle" aria-hidden="true"></i>Kontakta support</div>
+          </nav>
+
+          <main class="dash-main">
+            <div class="page-head">
+              <h2>Vidtagna åtgärder</h2>
+              <p>12 åtgärder senaste 7 dagarna &middot; Måndag 18 maj 2026, 08:54</p>
+            </div>
+
+            <div class="atg-list">
+              <div class="atg-day-head">Idag · 18 maj</div>
+              <div class="atg-row">
+                <div class="atg-time">07:18</div>
+                <div class="atg-icon operator"><i class="ti ti-broadcast" aria-hidden="true"></i></div>
+                <div class="atg-body">
+                  <div class="atg-title">Operatörsbyte &middot; <span class="atg-detail">Tele2 → Telia</span></div>
+                  <div class="atg-brukare"><i class="ti ti-user" aria-hidden="true"></i>Karin Lindberg <span class="atg-addr">&middot; Storgatan 4, Vingåker</span></div>
+                </div>
+                <div class="atg-by">
+                  <div class="atg-avatar">AM</div>
+                  <div class="atg-by-name">Du · Anna Magnell</div>
+                </div>
+                <div class="atg-sat">SAT-7104-228936</div>
+              </div>
+              <div class="atg-row">
+                <div class="atg-time">06:34</div>
+                <div class="atg-icon battery"><i class="ti ti-battery-charging" aria-hidden="true"></i></div>
+                <div class="atg-body">
+                  <div class="atg-title">Batteri bytt &middot; <span class="atg-detail">Rökdetektor · 12 % → 100 %</span></div>
+                  <div class="atg-brukare"><i class="ti ti-user" aria-hidden="true"></i>Erik Johansson <span class="atg-addr">&middot; Parkvägen 18, Vingåker</span></div>
+                </div>
+                <div class="atg-by">
+                  <div class="atg-avatar">AM</div>
+                  <div class="atg-by-name">Du · Anna Magnell</div>
+                </div>
+                <div class="atg-sat">SAT-6671-998340</div>
+              </div>
+              <div class="atg-day-head">Igår · 17 maj</div>
+              <div class="atg-row">
+                <div class="atg-time">14:22</div>
+                <div class="atg-icon volume"><i class="ti ti-volume" aria-hidden="true"></i></div>
+                <div class="atg-body">
+                  <div class="atg-title">Volymjustering &middot; <span class="atg-detail">Högtalarvolym 8 → 7</span></div>
+                  <div class="atg-brukare"><i class="ti ti-user" aria-hidden="true"></i>Sven Eriksson <span class="atg-addr">&middot; Parkvägen 8, Vingåker</span></div>
+                </div>
+                <div class="atg-by">
+                  <div class="atg-avatar">AM</div>
+                  <div class="atg-by-name">Du · Anna Magnell</div>
+                </div>
+                <div class="atg-sat">SAT-5520-441178</div>
+              </div>
+              <div class="atg-row">
+                <div class="atg-time">11:15</div>
+                <div class="atg-icon connect"><i class="ti ti-plug-connected" aria-hidden="true"></i></div>
+                <div class="atg-body">
+                  <div class="atg-title">Ny enhet ansluten &middot; <span class="atg-detail">Fallsensor · sovrum</span></div>
+                  <div class="atg-brukare"><i class="ti ti-user" aria-hidden="true"></i>Astrid Karlsson <span class="atg-addr">&middot; Storgatan 4, Vingåker</span></div>
+                </div>
+                <div class="atg-by">
+                  <div class="atg-avatar">MT</div>
+                  <div class="atg-by-name">Marcus Ternstedt · Sensapp</div>
+                </div>
+                <div class="atg-sat">SAT-9921-002847</div>
+              </div>
+              <div class="atg-day-head">Lör · 16 maj</div>
+              <div class="atg-row">
+                <div class="atg-time">09:48</div>
+                <div class="atg-icon volume"><i class="ti ti-volume" aria-hidden="true"></i></div>
+                <div class="atg-body">
+                  <div class="atg-title">Volymjustering &middot; <span class="atg-detail">Promptvolym 6 → 5</span></div>
+                  <div class="atg-brukare"><i class="ti ti-user" aria-hidden="true"></i>Bengt Olsson <span class="atg-addr">&middot; Lindvägen 12, Vingåker</span></div>
+                </div>
+                <div class="atg-by">
+                  <div class="atg-avatar">AM</div>
+                  <div class="atg-by-name">Du · Anna Magnell</div>
+                </div>
+                <div class="atg-sat">SAT-1847-554208</div>
+              </div>
+              <div class="atg-day-head">Tor · 14 maj</div>
+              <div class="atg-row">
+                <div class="atg-time">13:30</div>
+                <div class="atg-icon operator"><i class="ti ti-broadcast" aria-hidden="true"></i></div>
+                <div class="atg-body">
+                  <div class="atg-title">Operatörsbyte &middot; <span class="atg-detail">Tele2 → Telia</span></div>
+                  <div class="atg-brukare"><i class="ti ti-user" aria-hidden="true"></i>Ingvar Bergman <span class="atg-addr">&middot; Strandvägen 21, Vingåker</span></div>
+                </div>
+                <div class="atg-by">
+                  <div class="atg-avatar">AM</div>
+                  <div class="atg-by-name">Du · Anna Magnell</div>
+                </div>
+                <div class="atg-sat">SAT-3380-119234</div>
+              </div>
+              <div class="atg-day-head">Ons · 13 maj</div>
+              <div class="atg-row">
+                <div class="atg-time">10:15</div>
+                <div class="atg-icon battery"><i class="ti ti-battery-charging" aria-hidden="true"></i></div>
+                <div class="atg-body">
+                  <div class="atg-title">Batteri bytt &middot; <span class="atg-detail">Larmknapp · 9 % → 100 %</span></div>
+                  <div class="atg-brukare"><i class="ti ti-user" aria-hidden="true"></i>Greta Andersson <span class="atg-addr">&middot; Lindgatan 7, Vingåker</span></div>
+                </div>
+                <div class="atg-by">
+                  <div class="atg-avatar">LP</div>
+                  <div class="atg-by-name">Linda Petersson</div>
+                </div>
+                <div class="atg-sat">SAT-2245-117830</div>
+              </div>
+              <div class="atg-row">
+                <div class="atg-time">08:30</div>
+                <div class="atg-icon volume"><i class="ti ti-volume" aria-hidden="true"></i></div>
+                <div class="atg-body">
+                  <div class="atg-title">Volymjustering &middot; <span class="atg-detail">Högtalarvolym 5 → 8</span></div>
+                  <div class="atg-brukare"><i class="ti ti-user" aria-hidden="true"></i>Stig Pettersson <span class="atg-addr">&middot; Bergvägen 9, Vingåker</span></div>
+                </div>
+                <div class="atg-by">
+                  <div class="atg-avatar">AM</div>
+                  <div class="atg-by-name">Du · Anna Magnell</div>
+                </div>
+                <div class="atg-sat">SAT-1144-330229</div>
+              </div>
+              <div class="atg-day-head">Tis · 12 maj</div>
+              <div class="atg-row">
+                <div class="atg-time">15:44</div>
+                <div class="atg-icon disconnect"><i class="ti ti-unlink" aria-hidden="true"></i></div>
+                <div class="atg-body">
+                  <div class="atg-title">Tillbehör bortkopplat &middot; <span class="atg-detail">Rörelsevakt · sovrum (felaktig)</span></div>
+                  <div class="atg-brukare"><i class="ti ti-user" aria-hidden="true"></i>Märta Eklund <span class="atg-addr">&middot; Sjövägen 3, Marmorbyn</span></div>
+                </div>
+                <div class="atg-by">
+                  <div class="atg-avatar">AM</div>
+                  <div class="atg-by-name">Du · Anna Magnell</div>
+                </div>
+                <div class="atg-sat">SAT-8830-774501</div>
+              </div>
+              <div class="atg-row">
+                <div class="atg-time">11:02</div>
+                <div class="atg-icon connect"><i class="ti ti-plug-connected" aria-hidden="true"></i></div>
+                <div class="atg-body">
+                  <div class="atg-title">Ny enhet ansluten &middot; <span class="atg-detail">GPS-klocka · arm</span></div>
+                  <div class="atg-brukare"><i class="ti ti-user" aria-hidden="true"></i>Astrid Karlsson <span class="atg-addr">&middot; Storgatan 4, Vingåker</span></div>
+                </div>
+                <div class="atg-by">
+                  <div class="atg-avatar">AM</div>
+                  <div class="atg-by-name">Du · Anna Magnell</div>
+                </div>
+                <div class="atg-sat">SAT-9921-002847</div>
+              </div>
+              <div class="atg-day-head">Mån · 11 maj</div>
+              <div class="atg-row">
+                <div class="atg-time">13:20</div>
+                <div class="atg-icon battery"><i class="ti ti-battery-charging" aria-hidden="true"></i></div>
+                <div class="atg-body">
+                  <div class="atg-title">Batteri bytt &middot; <span class="atg-detail">Fallsensor · 14 % → 100 %</span></div>
+                  <div class="atg-brukare"><i class="ti ti-user" aria-hidden="true"></i>Yngve Lindqvist <span class="atg-addr">&middot; Hagvägen 14, Vingåker</span></div>
+                </div>
+                <div class="atg-by">
+                  <div class="atg-avatar">AM</div>
+                  <div class="atg-by-name">Du · Anna Magnell</div>
+                </div>
+                <div class="atg-sat">SAT-9971-005438</div>
+              </div>
+              <div class="atg-row">
+                <div class="atg-time">09:05</div>
+                <div class="atg-icon operator"><i class="ti ti-broadcast" aria-hidden="true"></i></div>
+                <div class="atg-body">
+                  <div class="atg-title">Operatörsbyte &middot; <span class="atg-detail">Telia → Tele2</span></div>
+                  <div class="atg-brukare"><i class="ti ti-user" aria-hidden="true"></i>Olle Nilsson <span class="atg-addr">&middot; Skolgatan 22, Vingåker</span></div>
+                </div>
+                <div class="atg-by">
+                  <div class="atg-avatar">LP</div>
+                  <div class="atg-by-name">Linda Petersson</div>
+                </div>
+                <div class="atg-sat">SAT-4471-902915</div>
+              </div>
+            </div>
+
+            <div class="atg-foot">
+              <i class="ti ti-info-circle" aria-hidden="true"></i>
+              <span>Behöver du historik längre tillbaka? Kontakta din kommun-admin (Nehat) eller Sensapp-support.</span>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 </div>
 
 <div class="view" id="view-mina">
@@ -7311,6 +7769,13 @@
       role: 'anna',
       title: 'Support',
       breadcrumb: ['Daglig användare', 'Support']
+    },
+    'anna/atgarder': {
+      view: 'view-anna-atgarder',
+      role: 'anna',
+      title: 'Vidtagna åtgärder',
+      breadcrumb: ['Daglig användare', 'Vidtagna åtgärder'],
+      back: 'anna/dashboard'
     }
   };
 
@@ -7457,10 +7922,11 @@
       }
     }
     // Inside Anna's mockups, allow side-nav clicks to navigate views
-    ['view-dashboard', 'view-mina', 'view-brukarsida', 'view-enhet', 'view-larm', 'view-larm-detail', 'view-support'].forEach(function (id) {
+    ['view-dashboard', 'view-mina', 'view-brukarsida', 'view-enhet', 'view-larm', 'view-larm-detail', 'view-support', 'view-anna-atgarder'].forEach(function (id) {
       wireNavItem(id, 'Översikt', 'anna/dashboard');
       wireNavItem(id, 'Mina brukare', 'anna/mina-brukare');
       wireNavItem(id, 'Larm', 'anna/larm');
+      wireNavItem(id, 'Vidtagna åtgärder', 'anna/atgarder');
       wireNavItem(id, 'Kontakta support', 'anna/support');
     });
 
