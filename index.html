@@ -3495,6 +3495,25 @@
   /* Green event-dot for positive/info events in "Senaste händelser" */
   .noc-event-dot.g { background: var(--mint); }
 
+  /* Critical (offline) status pill in Anna's brukarsida */
+  .bs-stat.crit { color: var(--pink); font-weight: 500; }
+
+  /* Static info pill replacing actionable buttons when no quick fix exists
+     (used in dörrkontakt-detalj — you can't fix an offline hub from here) */
+  .bs-alert-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.55);
+    color: var(--ink-2);
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 0.5px solid rgba(0,0,0,0.06);
+  }
+  .bs-alert-pill i { color: var(--ink-3); font-size: 15px; }
+
 
   /* Dark variant of dash-nav — used in kommun-admin hub-detalj where the
      surrounding container is the NOC-style dark mockup. Overrides the light
@@ -6300,35 +6319,35 @@
                     <div class="noc-peri-name"><i class="ti ti-flame" aria-hidden="true"></i>Rökdetektor</div>
                     <span>Kök</span>
                     <span>12 %</span>
-                    <span>-61 dBm</span>
+                    <span>-60 dBm</span>
                     <span class="badge-warn"><i class="ti ti-alert-triangle" aria-hidden="true"></i>Lågt batteri</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-activity" aria-hidden="true"></i>Fallsensor</div>
                     <span>Sovrum</span>
                     <span>87 %</span>
-                    <span>-61 dBm</span>
+                    <span>-54 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-door" aria-hidden="true"></i>Dörrkontakt</div>
                     <span>Ytterdörr</span>
                     <span>94 %</span>
-                    <span>-60 dBm</span>
+                    <span>-59 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-bell-ringing" aria-hidden="true"></i>Larmknapp</div>
                     <span>Halsband</span>
                     <span>71 %</span>
-                    <span>-55 dBm</span>
+                    <span>-65 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-eye" aria-hidden="true"></i>Rörelsevakt</div>
                     <span>Vardagsrum</span>
                     <span>68 %</span>
-                    <span>-56 dBm</span>
+                    <span>-58 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
               </div>
@@ -6543,28 +6562,28 @@
                     <div class="noc-peri-name"><i class="ti ti-clock" aria-hidden="true"></i>GPS-klocka</div>
                     <span>Arm</span>
                     <span>92 %</span>
-                    <span>-60 dBm</span>
+                    <span>-67 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-bell-ringing" aria-hidden="true"></i>Larmknapp</div>
                     <span>Halsband</span>
                     <span>81 %</span>
-                    <span>-59 dBm</span>
+                    <span>-69 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-door" aria-hidden="true"></i>Dörrkontakt</div>
                     <span>Ytterdörr</span>
                     <span>88 %</span>
-                    <span>-64 dBm</span>
+                    <span>-63 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-flame" aria-hidden="true"></i>Rökdetektor</div>
                     <span>Kök</span>
                     <span>95 %</span>
-                    <span>-65 dBm</span>
+                    <span>-64 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
               </div>
@@ -6779,49 +6798,49 @@
                     <div class="noc-peri-name"><i class="ti ti-bell-ringing" aria-hidden="true"></i>Larmknapp</div>
                     <span>Halsband</span>
                     <span>78 %</span>
-                    <span>-58 dBm</span>
+                    <span>-68 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-activity" aria-hidden="true"></i>Fallsensor</div>
                     <span>Sovrum</span>
                     <span>82 %</span>
-                    <span>-64 dBm</span>
+                    <span>-57 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-flame" aria-hidden="true"></i>Rökdetektor</div>
                     <span>Kök</span>
                     <span>90 %</span>
-                    <span>-64 dBm</span>
+                    <span>-63 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-door" aria-hidden="true"></i>Dörrkontakt</div>
                     <span>Ytterdörr</span>
                     <span>87 %</span>
-                    <span>-63 dBm</span>
+                    <span>-62 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-bed" aria-hidden="true"></i>Sängvakt</div>
                     <span>Sovrum</span>
                     <span>84 %</span>
-                    <span>-58 dBm</span>
+                    <span>-57 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-temperature" aria-hidden="true"></i>Rumstemperatur</div>
                     <span>Vardagsrum</span>
                     <span>—</span>
-                    <span>-68 dBm</span>
+                    <span>-60 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>20,4 °C</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-eye" aria-hidden="true"></i>Rörelsevakt</div>
                     <span>Hall</span>
                     <span>79 %</span>
-                    <span>-59 dBm</span>
+                    <span>-61 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
               </div>
@@ -9883,16 +9902,7 @@
                 <div class="alert-meta">Björkgatan 7 · Hem-hubb</div>
                 <div class="alert-info">Offline sedan 14:02 igår — påverkar 6 anslutna enheter</div>
               </div>
-              <button class="alert-btn">Åtgärda</button>
-            </div>
-
-            <div class="alert-card">
-              <div class="alert-body">
-                <div class="alert-name">Astrid Karlsson</div>
-                <div class="alert-meta">Storgatan 4 · GPS-klocka (fristående)</div>
-                <div class="alert-info">Batteri 12 % — behöver laddas idag</div>
-              </div>
-              <button class="alert-btn">Åtgärda</button>
+              <button class="alert-btn" data-goto="anna/brukare/maria">Åtgärda</button>
             </div>
 
             <div class="alert-card">
@@ -9900,6 +9910,15 @@
                 <div class="alert-name">Bengt Olsson</div>
                 <div class="alert-meta">Lindvägen 12 · Rökdetektor (1 av 5 anslutna enheter)</div>
                 <div class="alert-info">Lågt batteri 12 % — hubben rapporterar normalt</div>
+              </div>
+              <button class="alert-btn" data-goto="anna/brukare/bengt">Åtgärda</button>
+            </div>
+
+            <div class="alert-card">
+              <div class="alert-body">
+                <div class="alert-name">Astrid Karlsson</div>
+                <div class="alert-meta">Storgatan 4 · GPS-klocka (fristående)</div>
+                <div class="alert-info">Batteri 12 % — behöver laddas idag</div>
               </div>
               <button class="alert-btn">Åtgärda</button>
             </div>
@@ -10404,7 +10423,7 @@
 
 </div>
 
-<div class="view" id="view-brukarsida">
+<div class="view" id="view-brukarsida-bengt">
 <!-- ═══ BRUKARSIDAN ───────────────────────────────────── -->
 <section>
   <div class="wrap">
@@ -10430,10 +10449,7 @@
       </div>
 
       <div class="brukarsida">
-        <div class="bs-top">
-          <button class="bs-back"><i class="ti ti-arrow-left" aria-hidden="true"></i></button>
-          <div class="bs-breadcrumb">Översikt &nbsp;/&nbsp; Mina brukare &nbsp;/&nbsp; <b>Bengt Olsson</b></div>
-        </div>
+        
 
         <div class="bs-header">
           <div class="bs-avatar">BO</div>
@@ -10476,7 +10492,7 @@
             <button class="hub-action"><i class="ti ti-plug" aria-hidden="true"></i>Koppla enhet</button>
             <button class="hub-action"><i class="ti ti-unlink" aria-hidden="true"></i>Ta bort tillkopplad enhet</button>
             <button class="hub-action"><i class="ti ti-broadcast" aria-hidden="true"></i>Byt operatör</button>
-            <button class="hub-action"><i class="ti ti-clock-edit" aria-hidden="true"></i>Justera tider</button>
+            <button class="hub-action"><i class="ti ti-refresh" aria-hidden="true"></i>Systemomstart</button>
           </div>
         </div>
 
@@ -10566,7 +10582,171 @@
 
 </div>
 
-<div class="view" id="view-enhet">
+<div class="view" id="view-brukarsida-maria">
+<!-- ═══ BRUKARSIDAN ───────────────────────────────────── -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Vy 2 · Brukarsidan</div>
+    <h2 class="section-title">Där åtgärder faktiskt händer</h2>
+    <p class="section-lead">
+      När Anna klickar "Åtgärda" på Bengt Olsson hamnar hon här. Hela hemmet på ett ställe:
+      hubben, alla anslutna enheter, och problemet markerat. Inga serienummer i förgrunden —
+      bara namn, plats och vad som behöver göras.
+    </p>
+
+    <div class="mockup-stage">
+      <div class="mockup-meta">
+        <span>BRUKARSIDA · MARIA BERGSTRÖM</span>
+        <div class="dot-row"><span></span><span></span><span></span></div>
+      </div>
+      <div class="stage-breadcrumb">
+        <button type="button" class="bc-back" data-bc-back>
+          <i class="ti ti-arrow-left" aria-hidden="true"></i>Tillbaka
+        </button>
+        <div class="bc-divider"></div>
+        <div class="bc-path" data-bc-path></div>
+      </div>
+
+      <div class="brukarsida">
+        
+
+        <div class="bs-header">
+          <div class="bs-avatar">MB</div>
+          <div class="bs-info">
+            <h2>Maria Bergström</h2>
+            <p>Björkgatan 7, 643 30 Vingåker · Avdelning Norra hemtjänst</p>
+            <p>070-321 09 87 · Anhörig: Lena Bergström (dotter) · 073-211 09 87</p>
+          </div>
+        </div>
+
+        <div class="bs-alert crit">
+          <div class="bs-alert-icon"><i class="ti ti-alert-triangle" aria-hidden="true"></i></div>
+          <div class="bs-alert-body">
+            <p class="bs-alert-title">Behöver din uppmärksamhet</p>
+            <p class="bs-alert-info">Marias hubb har varit offline i 42 timmar (senast hörd 14:02 söndag 17 maj). Alla 6 anslutna enheter är otillgängliga. Operatörsbyte rekommenderas, eller besök på plats om problemet kvarstår.</p>
+          </div>
+          </div>
+
+        <div class="bs-section">
+          <h3 class="bs-section-title">Hem-hubb</h3>
+          <div class="bs-hub-card">
+            <div class="bs-hub-icon"><i class="ti ti-broadcast" aria-hidden="true"></i></div>
+            <div class="bs-hub-info">
+              <p class="bs-hub-sat">SAT-2321-932913</p>
+              <p class="bs-hub-name">Climax GX-MAX · Maria Bergströms hem</p>
+              <div class="bs-hub-stats">
+                <span class="bs-stat crit"><i class="ti ti-circle-x" aria-hidden="true"></i>Offline</span>
+                <span class="bs-stat"><i class="ti ti-antenna-off" aria-hidden="true"></i>Ingen signal</span>
+                <span class="bs-stat"><i class="ti ti-battery-2" aria-hidden="true"></i>Batteribackup 18 %</span>
+                <span class="bs-stat"><i class="ti ti-battery-3" aria-hidden="true"></i>Operatör · Tele2</span>
+                <span class="bs-stat"><i class="ti ti-clock" aria-hidden="true"></i>Senast hörd 42 h sedan</span>
+              </div>
+            </div>
+          </div>
+          <div class="bs-hub-actions">
+            <button class="hub-action"><i class="ti ti-plug" aria-hidden="true"></i>Koppla enhet</button>
+            <button class="hub-action"><i class="ti ti-unlink" aria-hidden="true"></i>Ta bort tillkopplad enhet</button>
+            <button class="hub-action"><i class="ti ti-broadcast" aria-hidden="true"></i>Byt operatör</button>
+            <button class="hub-action"><i class="ti ti-refresh" aria-hidden="true"></i>Systemomstart</button>
+          </div>
+        </div>
+
+        <div class="bs-section">
+          <div class="bs-vol-card">
+            <div class="bs-vol-head">
+              <div class="bs-vol-title">
+                <i class="ti ti-volume" aria-hidden="true"></i>
+                <span>Volym &amp; ljud</span>
+              </div>
+              <span class="bs-vol-help">Ändras direkt på hubben i Marias hem</span>
+            </div>
+            <div class="bs-vol-grid">
+              <div class="bs-vol-row">
+                <div class="bs-vol-label">
+                  <span class="bs-vol-name"><i class="ti ti-volume" aria-hidden="true"></i>Högtalarvolym</span>
+                  <span class="bs-vol-desc">Hur högt hubben larmar och svarar</span>
+                </div>
+                <div class="bs-vol-control">
+                  <input type="range" min="0" max="10" value="7" class="bs-vol-range" aria-label="Högtalarvolym">
+                  <span class="bs-vol-value">7 / 10</span>
+                </div>
+              </div>
+              <div class="bs-vol-row">
+                <div class="bs-vol-label">
+                  <span class="bs-vol-name"><i class="ti ti-message-circle" aria-hidden="true"></i>Promptvolym</span>
+                  <span class="bs-vol-desc">Röstmeddelanden och bekräftelser</span>
+                </div>
+                <div class="bs-vol-control">
+                  <input type="range" min="0" max="10" value="5" class="bs-vol-range" aria-label="Promptvolym">
+                  <span class="bs-vol-value">5 / 10</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bs-section">
+          <h3 class="bs-section-title">Anslutna enheter (6 av max 100)</h3>
+          <div class="bs-devices">
+            <div class="bs-device">
+              <div class="bs-dev-icon"><i class="ti ti-door" aria-hidden="true"></i></div>
+              <div class="bs-dev-body">
+                <p class="bs-dev-name">Dörrkontakt · Ytterdörr</p>
+                <p class="bs-dev-info">Otillgänglig · Senast hörd 42 h sedan</p>
+              </div>
+              <i class="ti ti-chevron-right bs-dev-chev" aria-hidden="true"></i>
+            </div>
+            <div class="bs-device">
+              <div class="bs-dev-icon"><i class="ti ti-bell-ringing" aria-hidden="true"></i></div>
+              <div class="bs-dev-body">
+                <p class="bs-dev-name">Larmknapp · Halsband</p>
+                <p class="bs-dev-info">Otillgänglig · Senast hörd 42 h sedan</p>
+              </div>
+              <i class="ti ti-chevron-right bs-dev-chev" aria-hidden="true"></i>
+            </div>
+            <div class="bs-device">
+              <div class="bs-dev-icon"><i class="ti ti-activity" aria-hidden="true"></i></div>
+              <div class="bs-dev-body">
+                <p class="bs-dev-name">Fallsensor · Kroppsburen</p>
+                <p class="bs-dev-info">Otillgänglig · Senast hörd 42 h sedan</p>
+              </div>
+              <i class="ti ti-chevron-right bs-dev-chev" aria-hidden="true"></i>
+            </div>
+            <div class="bs-device">
+              <div class="bs-dev-icon"><i class="ti ti-flame" aria-hidden="true"></i></div>
+              <div class="bs-dev-body">
+                <p class="bs-dev-name">Rökdetektor · Kök</p>
+                <p class="bs-dev-info">Otillgänglig · Senast hörd 42 h sedan</p>
+              </div>
+              <i class="ti ti-chevron-right bs-dev-chev" aria-hidden="true"></i>
+            </div>
+            <div class="bs-device">
+              <div class="bs-dev-icon"><i class="ti ti-bed" aria-hidden="true"></i></div>
+              <div class="bs-dev-body">
+                <p class="bs-dev-name">Sängvakt · Sovrum</p>
+                <p class="bs-dev-info">Otillgänglig · Senast hörd 42 h sedan</p>
+              </div>
+              <i class="ti ti-chevron-right bs-dev-chev" aria-hidden="true"></i>
+            </div>
+            <div class="bs-device">
+              <div class="bs-dev-icon"><i class="ti ti-eye" aria-hidden="true"></i></div>
+              <div class="bs-dev-body">
+                <p class="bs-dev-name">Rörelsevakt · Vardagsrum</p>
+                <p class="bs-dev-info">Otillgänglig · Senast hörd 42 h sedan</p>
+              </div>
+              <i class="ti ti-chevron-right bs-dev-chev" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+</div>
+
+<div class="view" id="view-enhet-rokdetektor">
 <!-- ═══ ENHET-DETALJ ──────────────────────────────────── -->
 <section class="light">
   <div class="wrap">
@@ -10592,10 +10772,7 @@
       </div>
 
       <div class="brukarsida">
-        <div class="bs-top">
-          <button class="bs-back"><i class="ti ti-arrow-left" aria-hidden="true"></i></button>
-          <div class="bs-breadcrumb">Mina brukare &nbsp;/&nbsp; Bengt Olsson &nbsp;/&nbsp; <b>Rökdetektor i kök</b></div>
-        </div>
+        
 
         <div class="bs-header">
           <div class="bs-avatar" style="background:var(--warn-soft);color:var(--warn-dark)"><i class="ti ti-flame" aria-hidden="true" style="font-size:26px"></i></div>
@@ -10688,10 +10865,151 @@
               </div>
             </div>
             <div class="action-card">
-              <div class="ac-icon"><i class="ti ti-adjustments" aria-hidden="true"></i></div>
+              <div class="ac-icon"><i class="ti ti-refresh" aria-hidden="true"></i></div>
               <div class="ac-body">
-                <h4>Justera känslighet</h4>
-                <p>För enheter som ger falsklarm</p>
+                <h4>Systemomstart</h4>
+                <p>Starta om enheten om den inte svarar</p>
+              </div>
+            </div>
+            <div class="action-card">
+              <div class="ac-icon"><i class="ti ti-unlink" aria-hidden="true"></i></div>
+              <div class="ac-body">
+                <h4>Koppla bort</h4>
+                <p>Ta bort enheten från hubben</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div class="view" id="view-enhet-dorrkontakt">
+<!-- ═══ ENHET-DETALJ ──────────────────────────────────── -->
+<section class="light">
+  <div class="wrap">
+    <div class="eyebrow">Vy 9 · Enhet-detalj</div>
+    <h2 class="section-title">Inne i en enskild enhet</h2>
+    <p class="section-lead">
+      När Anna klickar på rökdetektorn på Bengts brukarsida öppnas den här vyn —
+      enhetens hela bild på ett ställe. Status, senaste händelser, och de fyra vanligaste
+      åtgärderna som självservice. Tekniska detaljer fälls upp endast om någon vill se dem.
+    </p>
+
+    <div class="mockup-stage">
+      <div class="mockup-meta">
+        <span>ENHET-DETALJ · DÖRRKONTAKT · YTTERDÖRR</span>
+        <div class="dot-row"><span></span><span></span><span></span></div>
+      </div>
+      <div class="stage-breadcrumb">
+        <button type="button" class="bc-back" data-bc-back>
+          <i class="ti ti-arrow-left" aria-hidden="true"></i>Tillbaka
+        </button>
+        <div class="bc-divider"></div>
+        <div class="bc-path" data-bc-path></div>
+      </div>
+
+      <div class="brukarsida">
+        
+
+        <div class="bs-header">
+          <div class="bs-avatar" style="background:var(--pink-soft);color:var(--pink)"><i class="ti ti-door" aria-hidden="true" style="font-size:26px"></i></div>
+          <div class="bs-info">
+            <h2>Dörrkontakt vid ytterdörr</h2>
+            <p>Hör till: Maria Bergström · Björkgatan 7, Vingåker</p>
+            <p>Climax DC-15 · Aktiverad sedan 12 apr 2024</p>
+          </div>
+        </div>
+
+        <div class="bs-alert crit">
+          <div class="bs-alert-icon"><i class="ti ti-circle-x" aria-hidden="true"></i></div>
+          <div class="bs-alert-body">
+            <p class="bs-alert-title">Behöver din uppmärksamhet</p>
+            <p class="bs-alert-info">Dörrkontakten är otillgänglig eftersom Marias hubb är offline (senast hörd 14:02 söndag 17 maj). Sensorn fungerar troligtvis fortfarande — så snart hubben kommer tillbaka online återupptas rapporteringen automatiskt.</p>
+          </div>
+          <div class="bs-alert-actions">
+            <span class="bs-alert-pill"><i class="ti ti-info-circle" aria-hidden="true"></i>Hubb-problem måste lösas först</span>
+          </div>
+        </div>
+
+        <div class="bs-section">
+          <h3 class="bs-section-title">Status just nu</h3>
+          <div class="detail-stats">
+            <div class="stat-card crit">
+              <div class="sc-label"><i class="ti ti-circle-x" aria-hidden="true"></i>Status</div>
+              <div class="sc-value">Otillgänglig</div>
+              <div class="sc-meta">Hubben offline</div>
+            </div>
+            <div class="stat-card">
+              <div class="sc-label"><i class="ti ti-battery-3" aria-hidden="true"></i>Batteri (senast)</div>
+              <div class="sc-value">94 %</div>
+              <div class="sc-meta">Innan offline</div>
+            </div>
+            <div class="stat-card">
+              <div class="sc-label"><i class="ti ti-clock" aria-hidden="true"></i>Senast hörd</div>
+              <div class="sc-value">42 h</div>
+              <div class="sc-meta">Innan hubben tappade</div>
+            </div>
+            <div class="stat-card">
+              <div class="sc-label"><i class="ti ti-broadcast" aria-hidden="true"></i>Hub-koppling</div>
+              <div class="sc-value" style="color:var(--pink)">Offline</div>
+              <div class="sc-meta">Climax GX-MAX</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bs-section">
+          <h3 class="bs-section-title">Senaste aktivitet</h3>
+          <div class="timeline">
+            <div class="tl-item alert">
+              <div class="tl-time">17 maj · 14:02</div>
+              <div class="tl-title">Otillgänglig — hubben tappade kontakt</div>
+              <div class="tl-info">Sensorn slutade rapportera eftersom Marias hubb gick offline.</div>
+            </div>
+            <div class="tl-item passive">
+              <div class="tl-time">17 maj · 09:18</div>
+              <div class="tl-title">Dörr öppnad</div>
+              <div class="tl-info">Sensorn detekterade öppning, troligen hemtjänstens morgonbesök.</div>
+            </div>
+            <div class="tl-item passive">
+              <div class="tl-time">12 maj · 11:30</div>
+              <div class="tl-title">Rutintest</div>
+              <div class="tl-info">Månatlig självtest godkänd. Inga avvikelser.</div>
+            </div>
+            <div class="tl-item passive">
+              <div class="tl-time">12 apr 2024</div>
+              <div class="tl-title">Installerad och parkopplad</div>
+              <div class="tl-info">Anslöt till Marias hubb. Aktiverades av Marcus.</div>
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="bs-section">
+          <h3 class="bs-section-title">Vanliga åtgärder</h3>
+          <div class="action-grid">
+            <div class="action-card">
+              <div class="ac-icon"><i class="ti ti-circle-check" aria-hidden="true"></i></div>
+              <div class="ac-body">
+                <h4>Aktivera</h4>
+                <p>Aktivera enheten igen efter pausning</p>
+              </div>
+            </div>
+            <div class="action-card">
+              <div class="ac-icon"><i class="ti ti-volume-off" aria-hidden="true"></i></div>
+              <div class="ac-body">
+                <h4>Inaktivera tillfälligt</h4>
+                <p>Pausa larm i upp till 24 timmar</p>
+              </div>
+            </div>
+            <div class="action-card">
+              <div class="ac-icon"><i class="ti ti-refresh" aria-hidden="true"></i></div>
+              <div class="ac-body">
+                <h4>Systemomstart</h4>
+                <p>Starta om enheten om den inte svarar</p>
               </div>
             </div>
             <div class="action-card">
@@ -11377,18 +11695,32 @@
       breadcrumb: ['Daglig användare', 'Mina brukare']
     },
     'anna/brukare/bengt': {
-      view: 'view-brukarsida',
+      view: 'view-brukarsida-bengt',
       role: 'anna',
       title: 'Bengt Olsson',
       breadcrumb: ['Daglig användare', 'Mina brukare', 'Bengt Olsson'],
       back: 'anna/mina-brukare'
     },
+    'anna/brukare/maria': {
+      view: 'view-brukarsida-maria',
+      role: 'anna',
+      title: 'Maria Bergström',
+      breadcrumb: ['Daglig användare', 'Mina brukare', 'Maria Bergström'],
+      back: 'anna/mina-brukare'
+    },
     'anna/enhet/rokdetektor': {
-      view: 'view-enhet',
+      view: 'view-enhet-rokdetektor',
       role: 'anna',
       title: 'Rökdetektor · Kök',
       breadcrumb: ['Daglig användare', 'Mina brukare', 'Bengt Olsson', 'Rökdetektor — Kök'],
       back: 'anna/brukare/bengt'
+    },
+    'anna/enhet/dorrkontakt': {
+      view: 'view-enhet-dorrkontakt',
+      role: 'anna',
+      title: 'Dörrkontakt · Ytterdörr',
+      breadcrumb: ['Daglig användare', 'Mina brukare', 'Maria Bergström', 'Dörrkontakt — Ytterdörr'],
+      back: 'anna/brukare/maria'
     },
     'anna/larm': {
       view: 'view-larm',
@@ -11705,16 +12037,28 @@
         nodes[i].setAttribute('data-goto', target);
       }
     }
-    // Mina brukare → brukarsida (Bengt)
-    add('#view-mina .brukare-card', 'anna/brukare/bengt');
-    // Brukarsida hub-card → enhet-detalj (rökdetektor is the device with the warning)
-    add('#view-brukarsida .bs-device', 'anna/enhet/rokdetektor');
+    // Mina brukare → brukarsidor (Maria #1, Bengt #2, rest fallback to Bengt)
+    var brukareCards = document.querySelectorAll('#view-mina .brukare-card');
+    var brukareTargets = ['anna/brukare/maria', 'anna/brukare/bengt'];
+    for (var bk = 0; bk < brukareCards.length; bk++) {
+      var target = brukareTargets[bk] || 'anna/brukare/bengt';
+      brukareCards[bk].classList.add('clickable');
+      brukareCards[bk].setAttribute('data-goto', target);
+    }
+    // Brukarsida hub-card → enhet-detalj (rökdetektor is Bengts, dorrkontakt is Marias)
+    add('#view-brukarsida-bengt .bs-device', 'anna/enhet/rokdetektor');
+    add('#view-brukarsida-maria .bs-device', 'anna/enhet/dorrkontakt');
     // Larm list → larm-detail
-    add('#view-larm .larm-item', 'anna/larm/maria-1402');
+    // Larm list — split routing:
+    //   .larm-item.active (Bengt, currently unhandled) → larm-detail
+    //   .larm-item.acknowledged (handled today) → vidtagna åtgärder (the log view)
+    add('#view-larm .larm-item.active', 'anna/larm/maria-1402');
+    add('#view-larm .larm-item.acknowledged', 'anna/atgarder');
     // NOC anomalies (crit ones go to hub-detalj)
     add('#view-noc .noc-anom.crit', 'sensapp/noc/maria-hub');
-    // Dashboard alert cards → brukarsida
-    add('#view-dashboard .alert-card', 'anna/brukare/bengt');
+    // Dashboard alert cards: each "Åtgärda" button has its own data-goto in HTML
+    // (Maria → brukare/maria, Bengt → brukare/bengt, Astrid → brukare/bengt fallback)
+    // — no blanket card-level wiring needed here.
     // Kommun-admin anomalies → lägg-till (representative drill-down)
     // (Don't auto-link these — keep kommun-admin simpler. Lägg-till has its own button below.)
 
@@ -11730,7 +12074,7 @@
       }
     }
     // Inside Anna's mockups, allow side-nav clicks to navigate views
-    ['view-dashboard', 'view-mina', 'view-brukarsida', 'view-enhet', 'view-larm', 'view-larm-detail', 'view-support', 'view-anna-atgarder'].forEach(function (id) {
+    ['view-dashboard', 'view-mina', 'view-brukarsida-bengt', 'view-brukarsida-maria', 'view-enhet-rokdetektor', 'view-enhet-dorrkontakt', 'view-larm', 'view-larm-detail', 'view-support', 'view-anna-atgarder'].forEach(function (id) {
       wireNavItem(id, 'Översikt', 'anna/dashboard');
       wireNavItem(id, 'Mina brukare', 'anna/mina-brukare');
       wireNavItem(id, 'Larm', 'anna/larm');
