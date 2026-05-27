@@ -3499,6 +3499,67 @@
     gap: 4px;
   }
 
+  /* Force the hub-card to stay on a single row so the danger button sits to
+     the right of the info block instead of wrapping below it. */
+  .bs-hub-card { flex-wrap: nowrap; }
+  .bs-hub-card .bs-hub-info { min-width: 0; }
+
+  /* "Avregistrera brukare" — red destructive button on brukarsida hub-card.
+     Always rendered in its red "hover" state — solid pink background with
+     white text — so it reads as a destructive action at a glance. */
+  .bs-hub-card .bs-hub-danger-btn {
+    background: var(--pink);
+    color: #fff;
+    border: 1px solid var(--pink);
+    font-family: inherit;
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    align-self: center;
+    margin-left: auto;
+    flex-shrink: 0;
+    transition: filter 0.15s ease;
+  }
+  .bs-hub-card .bs-hub-danger-btn:hover {
+    filter: brightness(0.92);
+  }
+  .bs-hub-card .bs-hub-danger-btn i { font-size: 14px; }
+
+  /* "Avregistrera brukare" — destructive button in kommun-admin hub-detalj.
+     Sits below the action grid in its own subtle zone with a thin top divider
+     so it's separated from the regular actions. */
+  .noc-danger-zone {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 0.5px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: flex-end;
+  }
+  .noc-action.noc-action-danger {
+    background: transparent;
+    color: var(--pink);
+    border: 1px solid rgba(255,122,138,0.4);
+    padding: 9px 16px;
+    min-height: auto;
+    font-size: 12.5px;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+  .noc-action.noc-action-danger:hover {
+    background: var(--pink);
+    color: #fff;
+    border-color: var(--pink);
+  }
+  .noc-action.noc-action-danger i {
+    color: inherit;
+  }
+
   /* Tekniska detaljer på händelse-detalj — clean 2-col data list */
   .handelse-meta {
     display: flex;
@@ -6367,6 +6428,11 @@
                 <button class="noc-action"><i class="ti ti-bell-ringing" aria-hidden="true"></i>Pushnotis till personal</button>
                 <button class="noc-action"><i class="ti ti-file-text" aria-hidden="true"></i>Visa full logg</button>
               </div>
+              <div class="noc-danger-zone">
+                <button class="noc-action noc-action-danger" type="button">
+                  <i class="ti ti-user-x" aria-hidden="true"></i>Avregistrera brukare
+                </button>
+              </div>
             </div>
           </main>
         </div>
@@ -6483,35 +6549,35 @@
                     <div class="noc-peri-name"><i class="ti ti-flame" aria-hidden="true"></i>Rökdetektor</div>
                     <span>Kök</span>
                     <span>12 %</span>
-                    <span>-59 dBm</span>
+                    <span>-54 dBm</span>
                     <span class="badge-warn"><i class="ti ti-alert-triangle" aria-hidden="true"></i>Lågt batteri</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-activity" aria-hidden="true"></i>Fallsensor</div>
                     <span>Sovrum</span>
                     <span>87 %</span>
-                    <span>-56 dBm</span>
+                    <span>-64 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-door" aria-hidden="true"></i>Dörrkontakt</div>
                     <span>Ytterdörr</span>
                     <span>94 %</span>
-                    <span>-64 dBm</span>
+                    <span>-60 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-bell-ringing" aria-hidden="true"></i>Larmknapp</div>
                     <span>Halsband</span>
                     <span>71 %</span>
-                    <span>-59 dBm</span>
+                    <span>-56 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-eye" aria-hidden="true"></i>Rörelsevakt</div>
                     <span>Vardagsrum</span>
                     <span>68 %</span>
-                    <span>-60 dBm</span>
+                    <span>-59 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
               </div>
@@ -6602,6 +6668,11 @@
                 <button class="noc-action"><i class="ti ti-unlink" aria-hidden="true"></i>Ta bort tillkopplad enhet</button>
                 <button class="noc-action"><i class="ti ti-bell-ringing" aria-hidden="true"></i>Pushnotis till personal</button>
                 <button class="noc-action"><i class="ti ti-file-text" aria-hidden="true"></i>Visa full logg</button>
+              </div>
+              <div class="noc-danger-zone">
+                <button class="noc-action noc-action-danger" type="button">
+                  <i class="ti ti-user-x" aria-hidden="true"></i>Avregistrera brukare
+                </button>
               </div>
             </div>
           </main>
@@ -6719,28 +6790,28 @@
                     <div class="noc-peri-name"><i class="ti ti-clock" aria-hidden="true"></i>GPS-klocka</div>
                     <span>Arm</span>
                     <span>92 %</span>
-                    <span>-63 dBm</span>
+                    <span>-68 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-bell-ringing" aria-hidden="true"></i>Larmknapp</div>
                     <span>Halsband</span>
                     <span>81 %</span>
-                    <span>-63 dBm</span>
+                    <span>-60 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-door" aria-hidden="true"></i>Dörrkontakt</div>
                     <span>Ytterdörr</span>
                     <span>88 %</span>
-                    <span>-68 dBm</span>
+                    <span>-64 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-flame" aria-hidden="true"></i>Rökdetektor</div>
                     <span>Kök</span>
                     <span>95 %</span>
-                    <span>-63 dBm</span>
+                    <span>-58 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
               </div>
@@ -6831,6 +6902,11 @@
                 <button class="noc-action"><i class="ti ti-unlink" aria-hidden="true"></i>Ta bort tillkopplad enhet</button>
                 <button class="noc-action"><i class="ti ti-bell-ringing" aria-hidden="true"></i>Pushnotis till personal</button>
                 <button class="noc-action"><i class="ti ti-file-text" aria-hidden="true"></i>Visa full logg</button>
+              </div>
+              <div class="noc-danger-zone">
+                <button class="noc-action noc-action-danger" type="button">
+                  <i class="ti ti-user-x" aria-hidden="true"></i>Avregistrera brukare
+                </button>
               </div>
             </div>
           </main>
@@ -6948,35 +7024,35 @@
                     <div class="noc-peri-name"><i class="ti ti-bell-ringing" aria-hidden="true"></i>Larmknapp</div>
                     <span>Halsband</span>
                     <span>78 %</span>
-                    <span>-62 dBm</span>
+                    <span>-59 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-activity" aria-hidden="true"></i>Fallsensor</div>
                     <span>Sovrum</span>
                     <span>82 %</span>
-                    <span>-59 dBm</span>
+                    <span>-67 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-flame" aria-hidden="true"></i>Rökdetektor</div>
                     <span>Kök</span>
                     <span>90 %</span>
-                    <span>-62 dBm</span>
+                    <span>-57 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-door" aria-hidden="true"></i>Dörrkontakt</div>
                     <span>Ytterdörr</span>
                     <span>87 %</span>
-                    <span>-67 dBm</span>
+                    <span>-63 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
                   <div class="noc-peri-row">
                     <div class="noc-peri-name"><i class="ti ti-bed" aria-hidden="true"></i>Sängvakt</div>
                     <span>Sovrum</span>
                     <span>84 %</span>
-                    <span>-61 dBm</span>
+                    <span>-60 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
                   <div class="noc-peri-row">
@@ -6990,7 +7066,7 @@
                     <div class="noc-peri-name"><i class="ti ti-eye" aria-hidden="true"></i>Rörelsevakt</div>
                     <span>Hall</span>
                     <span>79 %</span>
-                    <span>-63 dBm</span>
+                    <span>-62 dBm</span>
                     <span class="badge-ok"><i class="ti ti-check" aria-hidden="true"></i>OK</span>
                   </div>
               </div>
@@ -7081,6 +7157,11 @@
                 <button class="noc-action"><i class="ti ti-unlink" aria-hidden="true"></i>Ta bort tillkopplad enhet</button>
                 <button class="noc-action"><i class="ti ti-bell-ringing" aria-hidden="true"></i>Pushnotis till personal</button>
                 <button class="noc-action"><i class="ti ti-file-text" aria-hidden="true"></i>Visa full logg</button>
+              </div>
+              <div class="noc-danger-zone">
+                <button class="noc-action noc-action-danger" type="button">
+                  <i class="ti ti-user-x" aria-hidden="true"></i>Avregistrera brukare
+                </button>
               </div>
             </div>
           </main>
@@ -10535,7 +10616,11 @@
                 <span class="bs-stat"><i class="ti ti-battery-3" aria-hidden="true"></i>Batteribackup 100 %</span>
                 <span class="bs-stat"><i class="ti ti-clock" aria-hidden="true"></i>Senast hörd 2 min sedan</span>
               </div>
-            </div>
+            <button class="bs-hub-danger-btn" type="button">
+              <i class="ti ti-user-x" aria-hidden="true"></i>
+              <span>Avregistrera brukare</span>
+            </button>
+          </div>
           </div>
           <div class="bs-hub-actions">
             <button class="hub-action"><i class="ti ti-plug" aria-hidden="true"></i>Koppla enhet</button>
@@ -10684,7 +10769,11 @@
                 <span class="bs-stat"><i class="ti ti-battery-3" aria-hidden="true"></i>Operatör · Tele2</span>
                 <span class="bs-stat"><i class="ti ti-clock" aria-hidden="true"></i>Senast hörd 1d 18h sedan</span>
               </div>
-            </div>
+            <button class="bs-hub-danger-btn" type="button">
+              <i class="ti ti-user-x" aria-hidden="true"></i>
+              <span>Avregistrera brukare</span>
+            </button>
+          </div>
           </div>
           <div class="bs-hub-actions">
             <button class="hub-action"><i class="ti ti-plug" aria-hidden="true"></i>Koppla enhet</button>
